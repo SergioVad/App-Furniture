@@ -2,7 +2,7 @@ import axios from "axios";
 import config from "../config.json";
 
 const httpFurniture = axios.create({
-    baseURL: config.apiEndpoint + "/furniture/"
+    baseURL: config.apiEndpoint + "/furniture/",
 });
 
 const furnitureService = {
@@ -29,7 +29,7 @@ const furnitureService = {
     edit: async (elem, id) => {
         const data = await httpFurniture.put(id, elem);
         return data;
-    }
+    },
 };
 
 export default furnitureService;

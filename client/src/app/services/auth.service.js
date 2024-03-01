@@ -5,8 +5,8 @@ import config from "../config.json";
 const httpAuth = axios.create({
     baseURL: config.apiEndpoint + "/auth/",
     params: {
-        key: process.env.REACT_APP_FIREBASE_KEY
-    }
+        key: process.env.REACT_APP_FIREBASE_KEY,
+    },
 });
 
 const authService = {
@@ -18,16 +18,16 @@ const authService = {
         const { data } = await httpAuth.post(`signInWithPassword`, {
             email,
             password,
-            returnSecureToken: true
+            returnSecureToken: true,
         });
         return data;
     },
     refresh: async () => {
         const { data } = await httpAuth.post("token", {
             grant_type: "refresh_token",
-            refresh_token: localStorageService.getRefreshToken()
+            refresh_token: localStorageService.getRefreshToken(),
         });
         return data;
-    }
+    },
 };
 export default authService;

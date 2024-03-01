@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getFurniture } from "../../store/furniture";
+import { getFurniture } from "../app/store/furniture";
 import DiscountFurn from "./discountFurn";
 import PopularFurn from "./popularFurn";
 

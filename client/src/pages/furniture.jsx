@@ -16,15 +16,19 @@ const Furniture = () => {
     const valueBed = useSelector(getFurnitureByCategory("bed"));
     const valueTv_stands = useSelector(getFurnitureByCategory("tv_stands"));
     const valueCoffee_tables = useSelector(
-        getFurnitureByCategory("coffee_tables")
+        getFurnitureByCategory("coffee_tables"),
     );
     const valueKitchenettes = useSelector(
-        getFurnitureByCategory("kitchenettes")
+        getFurnitureByCategory("kitchenettes"),
     );
     const valueTables = useSelector(getFurnitureByCategory("tables"));
     const valueMattresses = useSelector(getFurnitureByCategory("mattresses"));
-    const valueKitchensModule = useSelector(getFurnitureByCategory("kitchens_module"));
-    const valueKitchenFinishedSolution = useSelector(getFurnitureByCategory("kitchen_finished_solution"));
+    const valueKitchensModule = useSelector(
+        getFurnitureByCategory("kitchens_module"),
+    );
+    const valueKitchenFinishedSolution = useSelector(
+        getFurnitureByCategory("kitchen_finished_solution"),
+    );
     const { valueSearch } = useSearchElem();
     const valueSearchFurniture = useSelector(getArrayByName(valueSearch));
     const chooseCategory = () => {

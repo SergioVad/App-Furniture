@@ -25,13 +25,11 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
                     <button
                         className="btn btn-outline-secondary"
                         type="button"
-                        onClick={toggleShowPassword}
-                    >
+                        onClick={toggleShowPassword}>
                         <i
                             className={
                                 "bi bi-eye" + (showPassword ? "-slash" : "")
-                            }
-                        ></i>
+                            }></i>
                     </button>
                 )}
                 {error && <div className="invalid-feedback">{error}</div>}
@@ -40,7 +38,7 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
     );
 };
 TextField.defaultProps = {
-    type: "text"
+    type: "text",
 };
 TextField.propTypes = {
     label: PropTypes.string,
@@ -48,7 +46,7 @@ TextField.propTypes = {
     name: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
-    error: PropTypes.string
+    error: PropTypes.string,
 };
 
 export default TextField;

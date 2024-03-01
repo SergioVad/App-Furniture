@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import config from "../../config.json";
-import { arrCatalog, rusArrCatalog } from "./links";
+import config from "../app/config.json";
+import { arrCatalog, rusArrCatalog } from "../shared/links";
 
 const KatalogMainMenu = () => {
     return (
@@ -11,9 +11,8 @@ const KatalogMainMenu = () => {
                     key={index}
                     style={{
                         position: "relative",
-                        width: "33%"
-                    }}
-                >
+                        width: "33%",
+                    }}>
                     <Link to={`/katalog/${item}`}>
                         <img
                             src={config.imgSource + `catalog/${item}.jpg`}

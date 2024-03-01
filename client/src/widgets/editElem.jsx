@@ -5,9 +5,9 @@ import { useHistory, useParams } from "react-router-dom";
 import {
     editFurniture,
     getFurnitureByName,
-    loadFurnitureListAdmin
-} from "../../store/furniture";
-import { getCurrentUserData } from "../../store/users";
+    loadFurnitureListAdmin,
+} from "../app/store/furniture";
+import { getCurrentUserData } from "../app/store/users";
 
 const EditElem = () => {
     const history = useHistory();
@@ -16,10 +16,10 @@ const EditElem = () => {
     const { currentElement } = useParams();
     const furnitureByName = useSelector(getFurnitureByName(currentElement));
     const [product_name_rus, setNameRus] = useState(
-        furnitureByName.product_name_rus
+        furnitureByName.product_name_rus,
     );
     const [present_price, setPresentPrice] = useState(
-        furnitureByName.present_price
+        furnitureByName.present_price,
     );
     const [past_price, setPastPrice] = useState(furnitureByName.past_price);
     const [file, setFile] = useState(null);

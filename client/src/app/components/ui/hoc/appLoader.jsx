@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     getIsLoggedIn,
     getUsersLoadingStatus,
-    loadUsersList
+    loadUsersList,
 } from "../../../store/users";
 import { getFurniture, loadFurnitureList } from "../../../store/furniture";
 import { PageLoader } from "../pageLoader";
@@ -29,7 +29,7 @@ const AppLoader = ({ children }) => {
 AppLoader.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node
-    ])
+        PropTypes.node,
+    ]),
 };
 export default AppLoader;

@@ -5,8 +5,7 @@ const Footer = () => {
     return (
         <div
             className="footer offset-2 text-white p-2"
-            style={{ backgroundColor: "rgb(22, 22, 22)" }}
-        >
+            style={{ backgroundColor: "rgb(22, 22, 22)" }}>
             <div className="d-flex m-3 justify-content-around">
                 <div className="d-flex flex-column align-items-center">
                     <div className="mb-2">Информация</div>
@@ -33,9 +32,8 @@ const Footer = () => {
                             to="/login"
                             className="title-link"
                             style={{
-                                color: "rgb(22, 22, 22)"
-                            }}
-                        >
+                                color: "rgb(22, 22, 22)",
+                            }}>
                             Login
                         </Link>
                     </div>

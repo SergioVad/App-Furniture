@@ -7,7 +7,7 @@ export function setTokens({
     refreshToken,
     accessToken,
     userId,
-    expiresIn = 3600
+    expiresIn = 3600,
 }) {
     const expiresDate = new Date().getTime() + expiresIn * 1000;
     localStorage.setItem(USERID_KEY, userId);
@@ -40,6 +40,6 @@ const localStorageService = {
     getRefreshToken,
     getTokenExpiresDate,
     getUserId,
-    removeAuthData
+    removeAuthData,
 };
 export default localStorageService;

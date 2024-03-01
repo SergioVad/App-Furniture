@@ -5,7 +5,7 @@ import authService from "./auth.service";
 import localStorageService from "./localStorage.service";
 
 const http = axios.create({
-    baseURL: config.apiEndpoint
+    baseURL: config.apiEndpoint,
 });
 
 http.interceptors.request.use(
@@ -25,7 +25,7 @@ http.interceptors.request.use(
                     refreshToken: data.refresh_token,
                     idToken: data.id_token,
                     expiresIn: data.expires_in,
-                    localId: data.user_id
+                    localId: data.user_id,
                 });
             }
             const accessToken = localStorageService.getAccessToken();
@@ -41,7 +41,7 @@ http.interceptors.request.use(
             if (accessToken) {
                 config.headers = {
                     ...config.headers,
-                    Authorization: `Bearer ${accessToken}`
+                    Authorization: `Bearer ${accessToken}`,
                 };
             }
         }
@@ -49,13 +49,13 @@ http.interceptors.request.use(
     },
     function (error) {
         return Promise.reject(error);
-    }
+    },
 );
 
 function transormData(data) {
     return data && !data._id
         ? Object.keys(data).map((key) => ({
-              ...data[key]
+              ...data[key],
           }))
         : data;
 }
@@ -79,13 +79,13 @@ http.interceptors.response.use(
             console.log("Somthing was wrong. Try it later");
         }
         return Promise.reject(error);
-    }
+    },
 );
 const httpService = {
     get: http.get,
     post: http.post,
     put: http.put,
     delete: http.delete,
-    patch: http.patch
+    patch: http.patch,
 };
 export default httpService;

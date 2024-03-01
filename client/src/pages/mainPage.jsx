@@ -10,10 +10,10 @@ import { Loader } from "../hooks/loader";
 
 const MainPage = () => {
     const furniture = useSelector(getFurniture());
-    const loading = useSelector(getFurnitureLoadingStatus())
+    const loading = useSelector(getFurnitureLoadingStatus());
     if (loading) {
-        <Loader />
-    } 
+        <Loader />;
+    }
     if (!loading && furniture) {
         const discountFurn = furniture.filter((u) => u.type === "discount");
         const popularFurn = furniture.filter((u) => u.type === "popular");
@@ -30,6 +30,6 @@ const MainPage = () => {
             )
         );
     }
-}
+};
 
 export default MainPage;

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { validator } from "../shared/utils/validator";
 import { useDispatch } from "react-redux";
-import { signUp } from "../../store/users";
-import { validator } from "../../../shared/utils/validator";
-import TextField from "../common/form/textField";
+import { login } from "../app/store/users";
+import { useHistory } from "react-router-dom";
+import TextField from "../app/components/common/form/textField";
 
-const RegisterForm = () => {
+const LoginForm = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
-    const [data, setData] = useState({ email: "", password: "", name: "" });
+    const [data, setData] = useState({ email: "", password: "" });
     const [errors, setErrors] = useState({});
     useEffect(() => {
         validate();
@@ -14,32 +16,17 @@ const RegisterForm = () => {
     const validatorConfig = {
         email: {
             isRequired: {
-                message: "Электронная почта обязательна для заполнения"
+                message: "Электронная почта обязательна для заполнения",
             },
             isEmail: {
-                message: "Email введен некорректно"
-            }
-        },
-        name: {
-            isRequired: {
-                message: "Имя обязательно для заполнения"
-            }
+                message: "Email введен некорректно",
+            },
         },
         password: {
             isRequired: {
-                message: "Пароль обязателен для заполнения"
+                message: "Пароль обязателен для заполнения",
             },
-            isCapitalSymbol: {
-                message: "Пароль должен содержать хотя бы одну заглавную букву"
-            },
-            isContainDigit: {
-                message: "Пароль должен содержать хотя бы одно число"
-            },
-            min: {
-                message: "Пароль должен содержать минимум 8 символов",
-                value: 8
-            }
-        }
+        },
     };
     const validate = () => {
         const errors = validator(data, validatorConfig);
@@ -54,7 +41,11 @@ const RegisterForm = () => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-        dispatch(signUp(data));
+        const redirect = history.location.state
+            ? history.location.state.from.pathname
+            : "/";
+
+        dispatch(login({ payload: data, redirect }));
     };
     return (
         <>
@@ -65,13 +56,6 @@ const RegisterForm = () => {
                     value={data.email}
                     onChange={handleChange}
                     error={errors.email}
-                />
-                <TextField
-                    label="Имя"
-                    name={"name"}
-                    value={data.name}
-                    onChange={handleChange}
-                    error={errors.name}
                 />
                 <TextField
                     label="Пароль"
@@ -87,4 +71,4 @@ const RegisterForm = () => {
     );
 };
 
-export default RegisterForm;
+export default LoginForm;

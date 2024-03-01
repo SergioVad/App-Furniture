@@ -13,7 +13,7 @@ export const arrCatalog = [
     "coffee_tables",
     "kitchenettes",
     "tables",
-    "mattresses"
+    "mattresses",
 ];
 export const rusArrCatalog = [
     "Спальни",
@@ -28,14 +28,14 @@ export const rusArrCatalog = [
     "Журнальные столы",
     "Столы, стулья, кухонные уголки",
     "Письменные и компьютерные столы",
-    "Матрасы"
+    "Матрасы",
 ];
 
 const Links = () => {
     const handlerScrollUp = () => {
         window.scrollTo({
             top: 0,
-            behavior: "instant"
+            behavior: "instant",
         });
     };
     return arrCatalog.map((item, i) => (
@@ -44,14 +44,12 @@ const Links = () => {
                 to={`/katalog/${item}`}
                 style={{
                     textDecoration: "none",
-                    color: "inherit"
+                    color: "inherit",
                 }}
-                onClick={handlerScrollUp}
-            >
+                onClick={handlerScrollUp}>
                 <button
                     type="button"
-                    className="btn-navMenu btn btn-outline-info d-flex justify-content-center align-items-center"
-                >
+                    className="btn-navMenu btn btn-outline-info d-flex justify-content-center align-items-center">
                     {rusArrCatalog[i]}
                 </button>
             </Link>

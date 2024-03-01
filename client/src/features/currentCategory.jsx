@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getFurnitureLoadingStatus } from "../../store/furniture";
-import { getCurrentUserData } from "../../store/users";
-import { arrCatalog, rusArrCatalog } from "./links";
-import Pagination from "../common/pagination";
-import Breadcrumb from "../common/breadCrumb";
-import config from "../../config.json";
-import { addRuble } from "../../../shared/utils/addRuble";
-import { PageLoader } from "./pageLoader";
+import { getFurnitureLoadingStatus } from "../app/store/furniture";
+import { getCurrentUserData } from "../app/store/users";
+import { arrCatalog, rusArrCatalog } from "../shared/links";
+import Pagination from "../app/components/common/pagination";
+import Breadcrumb from "../app/components/common/breadCrumb";
+import config from "../app/config.json";
+import { addRuble } from "../shared/utils/addRuble";
+import { PageLoader } from "../app/components/ui/pageLoader";
 
 const CurrentCategory = ({ value }) => {
     const user = useSelector(getCurrentUserData());
@@ -21,12 +21,12 @@ const CurrentCategory = ({ value }) => {
     if (!value && furnitureLoading) {
         return (
             <div className="offset-2 h3 d-flex justify-content-center my-5">
-                <PageLoader/>
+                <PageLoader />
             </div>
         );
     } else {
         const categoryIndex = arrCatalog.findIndex(
-            (item) => item === currentCategory
+            (item) => item === currentCategory,
         );
 
         const count = value.length;
@@ -69,15 +69,13 @@ const CurrentCategory = ({ value }) => {
                             {arrCrop.map((item) => (
                                 <div
                                     key={item.id_product}
-                                    className="cardInMainPage card mb-4"
-                                >
+                                    className="cardInMainPage card mb-4">
                                     <Link
                                         style={{
                                             textDecoration: "none",
-                                            color: "inherit"
+                                            color: "inherit",
                                         }}
-                                        to={`/katalog/${item.category_product}/${item.product_name}`}
-                                    >
+                                        to={`/katalog/${item.category_product}/${item.product_name}`}>
                                         <div>
                                             <img
                                                 className="cardImgInMainPage"
@@ -91,9 +89,8 @@ const CurrentCategory = ({ value }) => {
                                                     <span
                                                         style={{
                                                             color: "#cd0404",
-                                                            fontWeight: "bold"
-                                                        }}
-                                                    >
+                                                            fontWeight: "bold",
+                                                        }}>
                                                         -50%
                                                     </span>
                                                 </div>
@@ -105,17 +102,16 @@ const CurrentCategory = ({ value }) => {
                                             <div className="lineHeightInMainPage">
                                                 <h4>
                                                     {addRuble(
-                                                        item.present_price
+                                                        item.present_price,
                                                     )}
                                                 </h4>
                                                 {item.type === "discount" && (
                                                     <s
                                                         style={{
-                                                            color: "#6e6d6d"
-                                                        }}
-                                                    >
+                                                            color: "#6e6d6d",
+                                                        }}>
                                                         {addRuble(
-                                                            item.past_price
+                                                            item.past_price,
                                                         )}
                                                     </s>
                                                 )}
@@ -128,11 +124,9 @@ const CurrentCategory = ({ value }) => {
                                             <Link
                                                 style={{
                                                     textDecoration: "none",
-                                                    color: "inherit"
+                                                    color: "inherit",
                                                 }}
-                                                to={`/katalog/${item.category_product}/${item.product_name}`}
-                                            >
-                                            </Link>
+                                                to={`/katalog/${item.category_product}/${item.product_name}`}></Link>
                                         </div>
                                     </div>
                                 </div>

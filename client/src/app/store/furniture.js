@@ -7,8 +7,8 @@ const initialState = {
     entities: null,
     isLoading: true,
     error: null,
-    lastFetch: null
-}
+    lastFetch: null,
+};
 
 const furnitureSlice = createSlice({
     name: "furniture",
@@ -32,7 +32,7 @@ const furnitureSlice = createSlice({
         },
         furnitureDelete: (state, action) => {
             state.entities = state.entities.filter(
-                (c) => c._id !== action.payload
+                (c) => c._id !== action.payload,
             );
             state.isLoading = false;
         },
@@ -42,12 +42,12 @@ const furnitureSlice = createSlice({
         },
         furnitureEdit: (state, action) => {
             const index = state.entities.findIndex(
-                (u) => u._id === action.payload._id
+                (u) => u._id === action.payload._id,
             );
             state.entities[index] = action.payload;
             state.isLoading = false;
-        }
-    }
+        },
+    },
 });
 
 const { reducer: furnitureReducer, actions } = furnitureSlice;
@@ -58,7 +58,7 @@ const {
     furnitureAdd,
     furnitureDelete,
     furnSearch,
-    furnitureEdit
+    furnitureEdit,
 } = actions;
 
 export const loadFurnitureList = () => async (dispatch, getState) => {
@@ -131,7 +131,7 @@ export const getFurniture = () => (state) => {
 export const getFurnitureByCategory = (value) => (state) => {
     if (state.furniture.entities) {
         return state.furniture.entities.filter(
-            (u) => u.category_product === value
+            (u) => u.category_product === value,
         );
     }
 };
@@ -141,7 +141,7 @@ export const getFurnitureLoadingStatus = () => (state) =>
 export const getFurnitureByName = (product_name) => (state) => {
     if (state.furniture.entities) {
         return state.furniture.entities.find(
-            (p) => p.product_name === product_name
+            (p) => p.product_name === product_name,
         );
     }
 };
@@ -151,7 +151,7 @@ export const getArrayByName = (value) => (state) => {
         return state.furniture.entities.filter(
             (p) =>
                 p.product_name_rus.toLowerCase().indexOf(value.toLowerCase()) >
-                -1
+                -1,
         );
     }
 };

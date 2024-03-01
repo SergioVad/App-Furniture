@@ -10,10 +10,10 @@ const initialState = localStorageService.getAccessToken()
           isLoading: true,
           error: null,
           auth: {
-              userId: localStorageService.getUserId()
+              userId: localStorageService.getUserId(),
           },
           isLoggedIn: true,
-          dataLoaded: false
+          dataLoaded: false,
       }
     : {
           entities: null,
@@ -21,7 +21,7 @@ const initialState = localStorageService.getAccessToken()
           error: null,
           auth: null,
           isLoggedIn: false,
-          dataLoaded: false
+          dataLoaded: false,
       };
 
 const usersSlice = createSlice({
@@ -63,8 +63,8 @@ const usersSlice = createSlice({
         },
         authRequested: (state) => {
             state.error = null;
-        }
-    }
+        },
+    },
 });
 
 const { reducer: usersReducer, actions } = usersSlice;
@@ -75,7 +75,7 @@ const {
     authRequestFailed,
     authRequestSuccess,
     userLoggedOut,
-    userUpdateSuccessed
+    userUpdateSuccessed,
 } = actions;
 
 const authRequested = createAction("users/authRequested");
@@ -91,8 +91,8 @@ export const login =
             localStorageService.setTokens(data);
             dispatch(
                 authRequestSuccess({
-                    userId: data.userId
-                })
+                    userId: data.userId,
+                }),
             );
             history.push(redirect);
         } catch (error) {
@@ -113,8 +113,8 @@ export const signUp = (payload) => async (dispatch) => {
         localStorageService.setTokens(data);
         dispatch(
             authRequestSuccess({
-                userId: data.userId
-            })
+                userId: data.userId,
+            }),
         );
         history.push("/users");
     } catch (error) {

@@ -5,11 +5,11 @@ const { combineReducers, configureStore } = require("@reduxjs/toolkit");
 
 const rootReducer = combineReducers({
     users: usersReducer,
-    furniture: furnitureReducer
+    furniture: furnitureReducer,
 });
 
 export function createStore() {
     return configureStore({
-        reducer: rootReducer
+        reducer: rootReducer,
     });
 }

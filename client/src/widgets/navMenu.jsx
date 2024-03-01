@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { useSearchElem } from "../../hooks/useSearchElem";
-import { searchFurn } from "../../store/furniture";
-import Links from "./links";
+import { searchFurn } from "../app/store/furniture";
+import Links from "../shared/links";
 
 const NavMenu = () => {
     const { setValueSearch } = useSearchElem();
@@ -29,8 +29,7 @@ const NavMenu = () => {
     return (
         <aside
             className="navMenu-width position-fixed bg-white h-100"
-            style={{ position: "absolute", zIndex: "100" }}
-        >
+            style={{ position: "absolute", zIndex: "100" }}>
             <div className="">
                 {/* <div className="div-town h6 mb-4">Город Черкесск</div> */}
                 {/* <div

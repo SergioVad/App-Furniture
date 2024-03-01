@@ -29,8 +29,7 @@ const Counter = ({ item, index, onSum }) => {
             <td className="td-width">
                 {
                     <Link
-                        to={`/katalog/${item.category_product}/${item.product_name}`}
-                    >
+                        to={`/katalog/${item.category_product}/${item.product_name}`}>
                         <img
                             src={config.imgSource + item.product_image[0]}
                             alt="logo"
@@ -46,15 +45,13 @@ const Counter = ({ item, index, onSum }) => {
                     <div className="basket_block_count d-flex justify-content-between align-items-center">
                         <button
                             className="btn btn-danger btn-sm d-flex justify-content-center align-items-center"
-                            onClick={handeDecrement}
-                        >
+                            onClick={handeDecrement}>
                             -
                         </button>
                         <div className="basket_count">{count}</div>
                         <button
                             className=" btn btn-primary btn-sm d-flex justify-content-center align-items-center"
-                            onClick={handleIncrement}
-                        >
+                            onClick={handleIncrement}>
                             +
                         </button>
                     </div>
@@ -64,10 +61,9 @@ const Counter = ({ item, index, onSum }) => {
             <td
                 className="h3 text-danger"
                 style={{
-                    cursor: "pointer"
+                    cursor: "pointer",
                 }}
-                onClick={handleDeleteBasket}
-            >
+                onClick={handleDeleteBasket}>
                 x
             </td>
         </tr>

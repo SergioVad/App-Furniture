@@ -43,10 +43,9 @@ const Breadcrumb = ({ element }) => {
                     <Link
                         style={{
                             color: "black",
-                            textDecoration: "none"
+                            textDecoration: "none",
                         }}
-                        to={"/katalog"}
-                    >
+                        to={"/katalog"}>
                         <span>Каталог</span>
                     </Link>
                 </li>
@@ -90,9 +89,8 @@ const Breadcrumb = ({ element }) => {
             <ol
                 className="breadcrumb"
                 style={{
-                    fontSize: "14px"
-                }}
-            >
+                    fontSize: "14px",
+                }}>
                 <li className="breadcrumb-item active" aria-current="page">
                     {
                         <Link to={`/`}>

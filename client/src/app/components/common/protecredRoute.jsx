@@ -15,8 +15,8 @@ const ProtectedRoute = ({ component: Component, children, ...rest }) => {
                             to={{
                                 pathname: "/login",
                                 state: {
-                                    from: props.location
-                                }
+                                    from: props.location,
+                                },
                             }}
                         />
                     );
@@ -32,8 +32,8 @@ ProtectedRoute.propTypes = {
     location: PropTypes.object,
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node
-    ])
+        PropTypes.node,
+    ]),
 };
 
 export default ProtectedRoute;

@@ -19,5 +19,5 @@ root.render(
                 </Router>
             </StoreProvider>
         </ErrorBoundary>
-    </BrowserRouter>
+    </BrowserRouter>,
 );

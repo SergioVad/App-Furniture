@@ -1,13 +1,16 @@
+// TODO - На данный момент не используется, возможно
+// подключить для тестового варианта
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
     getCurrentUserData,
     getIsLoggedIn,
-    updateUser
-} from "../../store/users";
-import { validator } from "../../../shared/utils/validator";
-import TextField from "../common/form/textField";
+    updateUser,
+} from "../app/store/users";
+import { validator } from "../shared/utils/validator";
+import TextField from "../app/components/common/form/textField";
 const Profile = () => {
     const isLoggedIn = useSelector(getIsLoggedIn());
     const currentUser = useSelector(getCurrentUserData());
@@ -25,9 +28,9 @@ const Profile = () => {
     const validatorConfig = {
         name: {
             isRequired: {
-                message: "Имя обязательно для заполнения"
-            }
-        }
+                message: "Имя обязательно для заполнения",
+            },
+        },
     };
     const validate = () => {
         const errors = validator(data, validatorConfig);

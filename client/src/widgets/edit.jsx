@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { getFurniture } from "../../store/furniture";
-import { getCurrentUserData } from "../../store/users";
-import config from "../../config.json";
+import { getFurniture } from "../app/store/furniture";
+import { getCurrentUserData } from "../app/store/users";
+import config from "../app/config.json";
 
 const Edit = () => {
     const history = useHistory();
@@ -11,7 +11,7 @@ const Edit = () => {
     const handlerScrollUp = () => {
         window.scrollTo({
             top: 0,
-            behavior: "instant"
+            behavior: "instant",
         });
     };
     const furniture = useSelector(getFurniture());
@@ -22,16 +22,14 @@ const Edit = () => {
                     <div
                         key={item.id_product}
                         className="card mb-4"
-                        style={{ width: "200px", height: "250px" }}
-                    >
+                        style={{ width: "200px", height: "250px" }}>
                         <Link
                             style={{
                                 textDecoration: "none",
-                                color: "inherit"
+                                color: "inherit",
                             }}
                             to={`/katalog/${item.category_product}/${item.product_name}`}
-                            onClick={handlerScrollUp}
-                        >
+                            onClick={handlerScrollUp}>
                             <img
                                 src={config.imgSource + item.product_image}
                                 style={{ width: "100%", height: "150px" }}
@@ -41,12 +39,10 @@ const Edit = () => {
                                     {item.product_name}
                                 </h5>
                                 <Link
-                                    to={`/katalog/${item.category_product}/${item.product_name}/editElem`}
-                                >
+                                    to={`/katalog/${item.category_product}/${item.product_name}/editElem`}>
                                     <button
                                         className="btn btn-warning mx-3"
-                                        style={{ height: "50px" }}
-                                    >
+                                        style={{ height: "50px" }}>
                                         Изменить
                                     </button>
                                 </Link>

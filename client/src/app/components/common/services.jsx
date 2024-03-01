@@ -18,8 +18,7 @@ const Services = () => {
                         </div>
                         <div
                             className="text-secondary"
-                            style={{ fontSize: "1vw" }}
-                        >
+                            style={{ fontSize: "1vw" }}>
                             Доставка до подъезда по КЧР
                         </div>
                     </div>
@@ -36,8 +35,7 @@ const Services = () => {
                         </div>
                         <div
                             style={{ fontSize: "1vw" }}
-                            className="text-secondary"
-                        >
+                            className="text-secondary">
                             За дополнительную плату вы можете воспользоваться
                             нашими услугами
                         </div>
@@ -55,8 +53,7 @@ const Services = () => {
                         </div>
                         <div
                             style={{ fontSize: "1vw" }}
-                            className="text-secondary"
-                        >
+                            className="text-secondary">
                             Также вы можете заказать подъем на этаж,
                             предварительно
                         </div>

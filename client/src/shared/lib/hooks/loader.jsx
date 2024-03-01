@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 export const Loader = () => {
     return (
         <div className="lds-default">
@@ -15,5 +15,5 @@ export const Loader = () => {
             <div></div>
             <div></div>
         </div>
-    )
-}
+    );
+};

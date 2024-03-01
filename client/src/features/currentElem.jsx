@@ -4,14 +4,14 @@ import { Link, useParams } from "react-router-dom";
 import {
     deleteFurniture,
     getFurnitureByName,
-    getFurnitureLoadingStatus
-} from "../../store/furniture";
-import { getCurrentUserData } from "../../store/users";
+    getFurnitureLoadingStatus,
+} from "../app/store/furniture";
+import { getCurrentUserData } from "../app/store/users";
 import CategoryUnderItem from "./categoryUnderItem";
 // import SimilarFurn from "./similarFurn";
-import Breadcrumb from "../common/breadCrumb";
-import config from "../../config.json";
-import { addRuble } from "../../../shared/utils/addRuble";
+import Breadcrumb from "../app/components/common/breadCrumb";
+import config from "../app/config.json";
+import { addRuble } from "../shared/utils/addRuble";
 
 const CurrentElem = () => {
     const { currentElement, currentCategory } = useParams();
@@ -40,17 +40,14 @@ const CurrentElem = () => {
                                     handleDelete(furnitureByName._id, back)
                                 }
                                 className="btn btn-danger"
-                                style={{ height: "50px" }}
-                            >
+                                style={{ height: "50px" }}>
                                 Удалить
                             </button>
                             <Link
-                                to={`/katalog/${currentCategory}/${furnitureByName.product_name}/editElem`}
-                            >
+                                to={`/katalog/${currentCategory}/${furnitureByName.product_name}/editElem`}>
                                 <button
                                     className="btn btn-warning mx-3"
-                                    style={{ height: "50px" }}
-                                >
+                                    style={{ height: "50px" }}>
                                     Изменить
                                 </button>
                             </Link>
@@ -62,17 +59,13 @@ const CurrentElem = () => {
                     <div className="col-7">
                         <div
                             id="carouselExampleIndicators"
-                            className="carousel slide d-flex justify-content-center"
-                        >
+                            className="carousel slide d-flex justify-content-center">
                             <div className="carousel-inner mb-3">
                                 {furnitureByName.product_image.map(
                                     (item, index) => (
                                         <div
                                             key={index}
-                                            className={`carousel-item${
-                                                index === 0 ? " active" : ""
-                                            }`}
-                                        >
+                                            className={`carousel-item${index === 0 ? " active" : ""}`}>
                                             <div className="divImgCarousel d-flex justify-content-center align-items-center">
                                                 <img
                                                     className="imgCarousel"
@@ -83,7 +76,7 @@ const CurrentElem = () => {
                                                 />
                                             </div>
                                         </div>
-                                    )
+                                    ),
                                 )}
                             </div>
                             <img
@@ -99,15 +92,14 @@ const CurrentElem = () => {
                                 data-bs-slide="next"
                             />
                         </div>
-                            {/* <SimilarFurn /> */}
+                        {/* <SimilarFurn /> */}
                     </div>
 
                     <div className="right-block-slider d-flex flex-wrap col-xxl-5 ps-2">
                         {furnitureByName.product_image.map((item, index) => (
                             <div
                                 key={index}
-                                className="right-block-slider-item d-flex flex-column align-items-center"
-                            >
+                                className="right-block-slider-item d-flex flex-column align-items-center">
                                 <img
                                     src={config.imgSource + item}
                                     className="right-block-slider-item-img"
@@ -136,7 +128,7 @@ const CurrentElem = () => {
                                                         furnitureByName
                                                             .arrDescrImage[
                                                             index
-                                                        ][1]
+                                                        ][1],
                                                     )}
                                                 </strong>
                                             </div>

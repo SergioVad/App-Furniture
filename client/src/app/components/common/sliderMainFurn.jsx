@@ -10,9 +10,8 @@ const SliderMailFurn = () => {
                 style={{
                     background: `url(${
                         config.imgSource + "bg/qw.jpg"
-                    }) center center / 100% no-repeat`
-                }}
-            >
+                    }) center center / 100% no-repeat`,
+                }}>
                 <div className="carousel-indicators">
                     <button
                         type="button"
@@ -20,29 +19,25 @@ const SliderMailFurn = () => {
                         data-bs-slide-to="0"
                         className="active buttonSlider"
                         aria-current="true"
-                        aria-label="Slide 1"
-                    ></button>
+                        aria-label="Slide 1"></button>
                     <button
                         className="buttonSlider"
                         type="button"
                         data-bs-target="#carouselExampleAutoplaying"
                         data-bs-slide-to="1"
-                        aria-label="Slide 2"
-                    ></button>
+                        aria-label="Slide 2"></button>
                     <button
                         className="buttonSlider"
                         type="button"
                         data-bs-target="#carouselExampleAutoplaying"
                         data-bs-slide-to="2"
-                        aria-label="Slide 3"
-                    ></button>
+                        aria-label="Slide 3"></button>
                     <button
                         className="buttonSlider"
                         type="button"
                         data-bs-target="#carouselExampleAutoplaying"
                         data-bs-slide-to="3"
-                        aria-label="Slide 4"
-                    ></button>
+                        aria-label="Slide 4"></button>
                 </div>
                 <div className="carouselMain carousel-inner">
                     <div className="carousel-item active">
@@ -62,24 +57,20 @@ const SliderMailFurn = () => {
                     className="carousel-control-prev"
                     type="button"
                     data-bs-target="#carouselExampleAutoplaying"
-                    data-bs-slide="prev"
-                >
+                    data-bs-slide="prev">
                     <span
                         className="carousel-control-prev-icon"
-                        aria-hidden="true"
-                    ></span>
+                        aria-hidden="true"></span>
                     <span className="visually-hidden">Previous</span>
                 </button>
                 <button
                     className="carousel-control-next"
                     type="button"
                     data-bs-target="#carouselExampleAutoplaying"
-                    data-bs-slide="next"
-                >
+                    data-bs-slide="next">
                     <span
                         className="carousel-control-next-icon"
-                        aria-hidden="true"
-                    ></span>
+                        aria-hidden="true"></span>
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
