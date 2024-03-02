@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
-import { addFurniture, loadFurnitureListAdmin } from "../store/furniture";
 import { nanoid } from "nanoid";
+import { addFurniture, loadFurnitureListAdmin } from "@/app/store/furniture";
 
 // import { getCurrentUserData } from "../store/users";
 const ChangeProduct = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
     // const user = useSelector(getCurrentUserData());
     const dispatch = useDispatch();
     const [category_product, setCategory] = useState("");
@@ -55,7 +55,7 @@ const ChangeProduct = () => {
         formData.append(`product_image_10_descr`, product_image_10_descr);
         dispatch(addFurniture(formData));
         dispatch(loadFurnitureListAdmin());
-        history.push(`/katalog/${category_product}`);
+        navigate(`/catalog/${category_product}`);
     };
     const handleFile = ({ target }) => {
         const arrImg = [];

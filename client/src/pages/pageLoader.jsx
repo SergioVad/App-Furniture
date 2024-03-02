@@ -1,5 +1,5 @@
-import { Loader } from "../../hooks/loader";
 import React from "react";
+import { Loader } from "../shared/lib/hooks/loader";
 export const PageLoader = () => {
     return (
         <div className="pageLoader">

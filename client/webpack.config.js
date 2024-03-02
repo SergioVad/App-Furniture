@@ -1,13 +1,16 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack");
 
 module.exports = (env) => {
     return {
         mode: env.mode || "development",
-        entry: "./src/index.js",
+        entry: path.resolve("src", "index.js"),
         output: {
-            path: path.resolve(__dirname, "dist"),
+            filename: "[name].[contenthash].js",
+            path: path.resolve("build"),
+            clean: true,
         },
         devServer: {
             open: true,
@@ -19,7 +22,15 @@ module.exports = (env) => {
                 template: path.resolve("public", "index.html"),
             }),
             env.mode === "production" && new MiniCssExtractPlugin(),
+            new webpack.ProgressPlugin(),
         ],
+        resolve: {
+            alias: {
+                "@": path.resolve("src"),
+            },
+            extensions: [".js", ".jsx"],
+            modules: [path.resolve("src"), "node_modules"],
+        },
         module: {
             rules: [
                 {
@@ -41,5 +52,6 @@ module.exports = (env) => {
                 },
             ],
         },
+        devtool: "eval-cheap-module-source-map",
     };
 };

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { validator } from "../shared/utils/validator";
 import { useDispatch } from "react-redux";
 import { login } from "../app/store/users";
-import { useHistory } from "react-router-dom";
-import TextField from "../app/components/common/form/textField";
+import { Navigate, useNavigate } from "react-router-dom";
+import TextField from "../entities/textField";
 
 const LoginForm = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [data, setData] = useState({ email: "", password: "" });
     const [errors, setErrors] = useState({});
@@ -41,11 +41,12 @@ const LoginForm = () => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-        const redirect = history.location.state
-            ? history.location.state.from.pathname
+        const redirect = navigate.location.state
+            ? navigate.location.state.from.pathname
             : "/";
 
         dispatch(login({ payload: data, redirect }));
+        <Navigate to={redirect} replace />;
     };
     return (
         <>

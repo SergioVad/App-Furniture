@@ -3,7 +3,6 @@ import authService from "../services/auth.service";
 import localStorageService from "../services/localStorage.service";
 import userService from "../services/user.service";
 import { generetaAuthError } from "../../shared/utils/generateAuthError";
-import history from "../../shared/utils/history";
 const initialState = localStorageService.getAccessToken()
     ? {
           entities: null,
@@ -83,7 +82,7 @@ const userUpdateFailed = createAction("users/userUpdateFailed");
 const userUpdateRequested = createAction("users/userUpdateRequested");
 
 export const login =
-    ({ payload, redirect }) =>
+    ({ payload }) =>
     async (dispatch) => {
         dispatch(authRequested());
         try {
@@ -94,7 +93,6 @@ export const login =
                     userId: data.userId,
                 }),
             );
-            history.push(redirect);
         } catch (error) {
             const { code, message } = error.response.data.error;
             if (code === 400) {
@@ -116,7 +114,6 @@ export const signUp = (payload) => async (dispatch) => {
                 userId: data.userId,
             }),
         );
-        history.push("/users");
     } catch (error) {
         dispatch(authRequestFailed(error.message));
     }
@@ -124,7 +121,6 @@ export const signUp = (payload) => async (dispatch) => {
 export const logOut = () => (dispatch) => {
     localStorageService.removeAuthData();
     dispatch(userLoggedOut());
-    history.push("/");
 };
 export const loadUsersList = () => async (dispatch) => {
     dispatch(usersRequested());
@@ -140,7 +136,6 @@ export const updateUser = (payload) => async (dispatch) => {
     try {
         const { content } = await userService.update(payload);
         dispatch(userUpdateSuccessed(content));
-        history.push(`/`);
     } catch (error) {
         dispatch(userUpdateFailed(error.message));
     }

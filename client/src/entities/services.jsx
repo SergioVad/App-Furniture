@@ -1,5 +1,5 @@
 import React from "react";
-import config from "../../config.json";
+import config from "../app/config.json";
 
 const Services = () => {
     return (

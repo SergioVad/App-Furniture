@@ -1,17 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import {
     deleteFurniture,
     getFurnitureByName,
     getFurnitureLoadingStatus,
 } from "../app/store/furniture";
 import { getCurrentUserData } from "../app/store/users";
-import CategoryUnderItem from "./categoryUnderItem";
 // import SimilarFurn from "./similarFurn";
-import Breadcrumb from "../app/components/common/breadCrumb";
 import config from "../app/config.json";
-import { addRuble } from "../shared/utils/addRuble";
+import { addRuble } from "@/shared/utils/addRuble";
+import Breadcrumb from "./breadCrumb";
+import CategoryUnderItem from "@/entities/categoryUnderItem";
 
 const CurrentElem = () => {
     const { currentElement, currentCategory } = useParams();
@@ -20,9 +20,9 @@ const CurrentElem = () => {
 
     const loading = useSelector(getFurnitureLoadingStatus());
     const furnitureByName = useSelector(getFurnitureByName(currentElement));
-    const back = `/katalog/${currentCategory}`;
     const handleDelete = (userId) => {
-        dispatch(deleteFurniture(userId, back));
+        dispatch(deleteFurniture(userId));
+        <Navigate to={`/catalog/${currentCategory}`} replace />;
     };
 
     if (currentElement && !loading) {
@@ -37,14 +37,14 @@ const CurrentElem = () => {
                         <div>
                             <button
                                 onClick={() =>
-                                    handleDelete(furnitureByName._id, back)
+                                    handleDelete(furnitureByName._id)
                                 }
                                 className="btn btn-danger"
                                 style={{ height: "50px" }}>
                                 Удалить
                             </button>
                             <Link
-                                to={`/katalog/${currentCategory}/${furnitureByName.product_name}/editElem`}>
+                                to={`/catalog/${currentCategory}/${furnitureByName.product_name}/editElem`}>
                                 <button
                                     className="btn btn-warning mx-3"
                                     style={{ height: "50px" }}>

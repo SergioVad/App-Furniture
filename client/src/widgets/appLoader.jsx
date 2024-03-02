@@ -5,9 +5,9 @@ import {
     getIsLoggedIn,
     getUsersLoadingStatus,
     loadUsersList,
-} from "../../../store/users";
-import { getFurniture, loadFurnitureList } from "../../../store/furniture";
-import { PageLoader } from "../pageLoader";
+} from "../app/store/users";
+import { getFurniture, loadFurnitureList } from "../app/store/furniture";
+import { PageLoader } from "../pages/pageLoader";
 
 const AppLoader = ({ children }) => {
     const furniture = useSelector(getFurniture());

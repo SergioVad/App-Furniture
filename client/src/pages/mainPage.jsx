@@ -1,12 +1,12 @@
 import React from "react";
-import DiscountFurn from "../components/ui/discountFurn";
-import PopularFurn from "../components/ui/popularFurn";
-import SliderMailFurn from "../components/common/sliderMainFurn";
 import { useSelector } from "react-redux";
-import { getFurniture, getFurnitureLoadingStatus } from "../store/furniture";
-import KatalogMainMenu from "../components/ui/katalogMainMenu";
-import Services from "../components/common/services";
-import { Loader } from "../hooks/loader";
+import { Loader } from "@/shared/lib/hooks/loader";
+import CatalogMainMenu from "@/features/catalogMainMenu";
+import { getFurniture, getFurnitureLoadingStatus } from "@/app/store/furniture";
+import SliderMailFurn from "@/features/sliderMainFurn";
+import DiscountFurn from "@/entities/discountFurn";
+import PopularFurn from "@/entities/popularFurn";
+import Services from "@/entities/services";
 
 const MainPage = () => {
     const furniture = useSelector(getFurniture());
@@ -22,7 +22,7 @@ const MainPage = () => {
             popularFurn && (
                 <div className="d-flex flex-column offset-2 p-3">
                     <SliderMailFurn />
-                    <KatalogMainMenu />
+                    <CatalogMainMenu />
                     <DiscountFurn value={discountFurn} />
                     <PopularFurn value={popularFurn} />
                     <Services />

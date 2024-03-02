@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import furnitureService from "../services/furniture.service";
 import isOutdated from "../../shared/utils/isOutdated";
-import history from "../../shared/utils/history";
 
 const initialState = {
     entities: null,
@@ -92,14 +91,13 @@ export const addFurniture = (payload) => async (dispatch) => {
     }
 };
 
-export const deleteFurniture = (uniId, redirect) => async (dispatch) => {
+export const deleteFurniture = (uniId) => async (dispatch) => {
     dispatch(furnitureRequested());
     try {
         const { data } = await furnitureService.delete(uniId);
         if (!data) {
             await dispatch(furnitureDelete(data));
             dispatch(loadFurnitureListAdmin());
-            history.push(redirect);
         }
     } catch (error) {
         dispatch(furnitureRequestFiled(error.message));

@@ -3,14 +3,14 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import {
     getCurrentUserData,
     getIsLoggedIn,
     updateUser,
 } from "../app/store/users";
 import { validator } from "../shared/utils/validator";
-import TextField from "../app/components/common/form/textField";
+import TextField from "../entities/textField";
 const Profile = () => {
     const isLoggedIn = useSelector(getIsLoggedIn());
     const currentUser = useSelector(getCurrentUserData());
@@ -46,6 +46,7 @@ const Profile = () => {
         const isValid = validate();
         if (!isValid) return;
         dispatch(updateUser(data));
+        <Navigate to="/" replace />;
     };
     if (!currentUser) return "loading";
     return (

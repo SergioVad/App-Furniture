@@ -1,14 +1,13 @@
-import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
-import { useSearchElem } from "../../hooks/useSearchElem";
+import { useNavigate } from "react-router-dom";
 import { searchFurn } from "../app/store/furniture";
 import Links from "../shared/links";
+import { useSearchElem } from "../shared/lib/hooks/useSearchElem";
 
 const NavMenu = () => {
     const { setValueSearch } = useSearchElem();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
         const value = e.target.searchFurn.value.trim();
@@ -21,7 +20,7 @@ const NavMenu = () => {
             }
             trueValue = value[0].toUpperCase() + value.slice(1).toLowerCase();
             setValueSearch(trueValue);
-            history.push(`/katalog/search`);
+            navigate(`/catalog/search`);
             dispatch(searchFurn(trueValue));
             e.target.searchFurn.value = "";
         }

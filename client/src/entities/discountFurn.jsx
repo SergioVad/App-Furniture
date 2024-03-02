@@ -25,7 +25,7 @@ const DiscountFurn = ({ value }) => {
                                 textDecoration: "none",
                                 color: "inherit",
                             }}
-                            to={`/katalog/${item.category_product}/${item.product_name}`}>
+                            to={`/catalog/${item.category_product}/${item.product_name}`}>
                             <div>
                                 <img
                                     className="cardImgInMainPage"
@@ -63,7 +63,7 @@ const DiscountFurn = ({ value }) => {
                                         textDecoration: "none",
                                         color: "inherit",
                                     }}
-                                    to={`/katalog/${item.category_product}/${item.product_name}`}></Link>
+                                    to={`/catalog/${item.category_product}/${item.product_name}`}></Link>
                             </div>
                         </div>
                     </div>

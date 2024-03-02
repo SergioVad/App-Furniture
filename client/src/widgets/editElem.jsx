@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
     editFurniture,
     getFurnitureByName,
@@ -10,7 +10,7 @@ import {
 import { getCurrentUserData } from "../app/store/users";
 
 const EditElem = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const user = useSelector(getCurrentUserData());
     const dispatch = useDispatch();
     const { currentElement } = useParams();
@@ -31,7 +31,7 @@ const EditElem = () => {
         formDataEdit.append("past_price", past_price);
         dispatch(editFurniture(formDataEdit, furnitureByName._id));
         dispatch(loadFurnitureListAdmin());
-        history.goBack();
+        navigate.goBack();
     };
     const handleFile = ({ target }) => {
         setFile(target.files[0]);
@@ -85,7 +85,7 @@ const EditElem = () => {
             </div>
         );
     } else {
-        history.push("/");
+        navigate("/");
     }
 };
 

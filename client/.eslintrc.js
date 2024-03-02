@@ -25,5 +25,6 @@ module.exports = {
         "sergio-plugin/publick-api-imports": "error",
         "sergio-plugin/path-checker": "error",
         "sergio-plugin/available-layers": "error",
+        "react/react-in-jsx-scope": "off",
     },
 };

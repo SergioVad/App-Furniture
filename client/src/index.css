@@ -324,7 +324,7 @@ body {
     /* Хлебные крошки */
 
     /* Главное меню - каталог */
-    .block_katalog {
+    .block_catalog {
         display: flex;
         align-items: center;
         position: absolute;
@@ -592,7 +592,7 @@ body {
     /* Хлебные крошки */
 
     /* Главное меню - каталог */
-    .block_katalog {
+    .block_catalog {
         bottom: 35px;
         left: 35px;
         font-size: 20px;
@@ -884,7 +884,7 @@ body {
     /* Хлебные крошки */
 
     /* Главное меню - каталог */
-    .block_katalog {
+    .block_catalog {
         bottom: 30px;
         left: 30px;
         font-size: 17px;
@@ -1180,7 +1180,7 @@ body {
     /* Хлебные крошки */
 
     /* Главное меню - каталог */
-    .block_katalog {
+    .block_catalog {
         bottom: 25px;
         left: 25px;
         font-size: 14px;
@@ -1485,7 +1485,7 @@ body {
     /* Хлебные крошки */
 
     /* Главное меню - каталог */
-    .block_katalog {
+    .block_catalog {
         bottom: 20px;
         left: 20px;
         font-size: 11px;

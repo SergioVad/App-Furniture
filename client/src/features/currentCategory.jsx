@@ -4,11 +4,11 @@ import { Link, useParams } from "react-router-dom";
 import { getFurnitureLoadingStatus } from "../app/store/furniture";
 import { getCurrentUserData } from "../app/store/users";
 import { arrCatalog, rusArrCatalog } from "../shared/links";
-import Pagination from "../app/components/common/pagination";
-import Breadcrumb from "../app/components/common/breadCrumb";
 import config from "../app/config.json";
 import { addRuble } from "../shared/utils/addRuble";
-import { PageLoader } from "../app/components/ui/pageLoader";
+import { PageLoader } from "@/pages/pageLoader";
+import Breadcrumb from "./breadCrumb";
+import Pagination from "./pagination";
 
 const CurrentCategory = ({ value }) => {
     const user = useSelector(getCurrentUserData());
@@ -75,7 +75,7 @@ const CurrentCategory = ({ value }) => {
                                             textDecoration: "none",
                                             color: "inherit",
                                         }}
-                                        to={`/katalog/${item.category_product}/${item.product_name}`}>
+                                        to={`/catalog/${item.category_product}/${item.product_name}`}>
                                         <div>
                                             <img
                                                 className="cardImgInMainPage"
@@ -126,7 +126,7 @@ const CurrentCategory = ({ value }) => {
                                                     textDecoration: "none",
                                                     color: "inherit",
                                                 }}
-                                                to={`/katalog/${item.category_product}/${item.product_name}`}></Link>
+                                                to={`/catalog/${item.category_product}/${item.product_name}`}></Link>
                                         </div>
                                     </div>
                                 </div>

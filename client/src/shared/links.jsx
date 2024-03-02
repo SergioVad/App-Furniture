@@ -41,7 +41,7 @@ const Links = () => {
     return arrCatalog.map((item, i) => (
         <li key={i} className="nav-item mb-2">
             <Link
-                to={`/katalog/${item}`}
+                to={`/catalog/${item}`}
                 style={{
                     textDecoration: "none",
                     color: "inherit",

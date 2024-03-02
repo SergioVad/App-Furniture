@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { signUp } from "../app/store/users";
-import { validator } from "../shared/utils/validator";
-import TextField from "../app/components/common/form/textField";
+import { signUp } from "@/app/store/users";
+import { validator } from "@/shared/utils/validator";
+import { Navigate } from "react-router-dom";
+import TextField from "@/entities/textField";
 
 const RegisterForm = () => {
     const dispatch = useDispatch();
@@ -55,6 +56,7 @@ const RegisterForm = () => {
         const isValid = validate();
         if (!isValid) return;
         dispatch(signUp(data));
+        <Navigate to="users" replace />;
     };
     return (
         <>

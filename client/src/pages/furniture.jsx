@@ -1,11 +1,11 @@
+import { getArrayByName, getFurnitureByCategory } from "@/app/store/furniture";
+import Catalog from "@/features/catalog";
+import CurrentCategory from "@/features/currentCategory";
+import CurrentElem from "@/features/currentElem";
+import { useSearchElem } from "@/shared/lib/hooks/useSearchElem";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getArrayByName, getFurnitureByCategory } from "../store/furniture";
-import CurrentCategory from "../components/ui/currentCategory";
-import CurrentElem from "../components/ui/currentElem";
-import Katalog from "../components/ui/katalog";
-import { useSearchElem } from "../hooks/useSearchElem";
 const Furniture = () => {
     const { currentCategory, currentElement } = useParams();
     const valueBedrooms = useSelector(getFurnitureByCategory("bedrooms"));
@@ -72,7 +72,7 @@ const Furniture = () => {
             ) : currentCategory ? (
                 <CurrentCategory value={chooseCategory()} />
             ) : (
-                <Katalog />
+                <Catalog />
             )}
         </>
     );

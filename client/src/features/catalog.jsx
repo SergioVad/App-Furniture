@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Breadcrumb from "../app/components/common/breadCrumb";
 import config from "../app/config.json";
 import { arrCatalog, rusArrCatalog } from "../shared/links";
+import Breadcrumb from "./breadCrumb";
 
-const Katalog = () => {
+const Catalog = () => {
     return (
         <div className="offset-2 p-3">
             <h2>Каталог</h2>
@@ -17,13 +17,13 @@ const Katalog = () => {
                             position: "relative",
                             width: "33%",
                         }}>
-                        <Link to={`/katalog/${item}`}>
+                        <Link to={`/catalog/${item}`}>
                             <img
                                 src={config.imgSource + `catalog/${item}.jpg`}
                                 className=" text-warning text-center me-1 mb-2"
                                 style={{ width: "100%", height: "19vw" }}
                             />
-                            <div className="block_katalog">
+                            <div className="block_catalog">
                                 {rusArrCatalog[index]}
                             </div>
                         </Link>
@@ -34,4 +34,4 @@ const Katalog = () => {
     );
 };
 
-export default Katalog;
+export default Catalog;

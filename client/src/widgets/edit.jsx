@@ -1,12 +1,11 @@
-import React from "react";
 import { useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getFurniture } from "../app/store/furniture";
 import { getCurrentUserData } from "../app/store/users";
 import config from "../app/config.json";
 
 const Edit = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const user = useSelector(getCurrentUserData());
     const handlerScrollUp = () => {
         window.scrollTo({
@@ -28,7 +27,7 @@ const Edit = () => {
                                 textDecoration: "none",
                                 color: "inherit",
                             }}
-                            to={`/katalog/${item.category_product}/${item.product_name}`}
+                            to={`/catalog/${item.category_product}/${item.product_name}`}
                             onClick={handlerScrollUp}>
                             <img
                                 src={config.imgSource + item.product_image}
@@ -39,7 +38,7 @@ const Edit = () => {
                                     {item.product_name}
                                 </h5>
                                 <Link
-                                    to={`/katalog/${item.category_product}/${item.product_name}/editElem`}>
+                                    to={`/catalog/${item.category_product}/${item.product_name}/editElem`}>
                                     <button
                                         className="btn btn-warning mx-3"
                                         style={{ height: "50px" }}>
@@ -53,7 +52,7 @@ const Edit = () => {
             </div>
         );
     } else {
-        history.push("/");
+        navigate("/");
     }
 };
 

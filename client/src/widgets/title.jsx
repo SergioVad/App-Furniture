@@ -17,7 +17,7 @@ const Title = () => {
                 <Link className="title-link" to="#">
                     Информация
                 </Link>
-                <Link className="title-link" to="/katalog">
+                <Link className="title-link" to="/catalog">
                     Каталог
                 </Link>
                 <Link className="title-link" to="/dostavka-sborka">

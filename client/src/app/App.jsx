@@ -1,43 +1,42 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-import AppLoader from "./components/ui/hoc/appLoader";
-import MainPage from "./layouts/mainPage";
+import { Route, Routes } from "react-router-dom";
+import AppLoader from "../widgets/appLoader";
 import NavMenu from "../widgets/navMenu";
-import ChangeProduct from "./layouts/changeProduct";
-import Furniture from "./layouts/furniture";
 import Profile from "../widgets/profile";
 import Title from "../widgets/title";
 import Footer from "../widgets/footer";
-import ProtectedRoute from "./components/common/protecredRoute";
-import LogOut from "./layouts/logOut";
-import Login from "./layouts/login";
+import ProtectedRoute from "./protecredRoute";
 import Edit from "../widgets/edit";
 import EditElem from "../widgets/editElem";
-import { SearchElemProviders } from "./hooks/useSearchElem";
 import Payment from "../pages/payment";
 import DostavkaSborka from "../pages/dostavkaSborka";
+import { SearchElemProviders } from "../shared/lib/hooks/useSearchElem";
+import ChangeProduct from "@/pages/changeProduct";
+import Furniture from "../pages/furniture";
+import Login from "../pages/login";
+import LogOut from "../pages/logOut";
+import MainPage from "../pages/mainPage";
 
 function App() {
     return (
-        <Switch>
-            <AppLoader>
-                <SearchElemProviders>
-                    <NavMenu />
-                    <Title />
-                    <div style={{ minHeight: "1200px" }}>
-                        <ProtectedRoute
+        <AppLoader>
+            <SearchElemProviders>
+                <NavMenu />
+                <Title />
+                <div style={{ minHeight: "1200px" }}>
+                    <Routes>
+                        {/* <ProtectedRoute
                             path={"/product-change"}
                             component={ChangeProduct}
                         />{" "}
                         <ProtectedRoute
                             path={
-                                "/katalog/:currentCategory/:currentElement/editElem"
+                                "/catalog/:currentCategory/:currentElement/editElem"
                             }
                             exact
                             component={EditElem}
-                        />{" "}
+                        />{" "} */}
                         <Route
-                            path={"/katalog/:currentCategory?/:currentElement?"}
+                            path={"/catalog/:currentCategory?/:currentElement?"}
                             component={Furniture}
                             exact
                         />{" "}
@@ -53,18 +52,18 @@ function App() {
                             exact
                             component={Payment}
                         />{" "}
-                        <ProtectedRoute
+                        {/* <ProtectedRoute
                             path={"/profile"}
                             exact
                             component={Profile}
                         />{" "}
-                        <ProtectedRoute path={"/edit"} exact component={Edit} />{" "}
+                        <ProtectedRoute path={"/edit"} exact component={Edit} />{" "} */}
                         <Route path={"/"} exact component={MainPage} />{" "}
-                    </div>
-                    <Footer />
-                </SearchElemProviders>
-            </AppLoader>
-        </Switch>
+                    </Routes>
+                </div>
+                <Footer />
+            </SearchElemProviders>
+        </AppLoader>
     );
 }
 

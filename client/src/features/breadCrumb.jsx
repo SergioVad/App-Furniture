@@ -1,36 +1,35 @@
-import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Breadcrumb = ({ element }) => {
-    const history = useHistory();
-    const nav = history.location.pathname;
+    const navigate = useNavigate();
+    const nav = navigate.location.pathname;
     const navArr = nav.slice(1).split("/");
     const currentCategory = (value) => {
         switch (value) {
             case "bedrooms":
-                return "/katalog/bedrooms";
+                return "/catalog/bedrooms";
             case "livingRooms":
-                return "/katalog/livingRooms";
+                return "/catalog/livingRooms";
             case "kitchens":
-                return "/katalog/kitchens";
+                return "/catalog/kitchens";
             case "hallways":
-                return "/katalog/hallways";
+                return "/catalog/hallways";
             case "dressers":
-                return "/katalog/dressers";
+                return "/catalog/dressers";
             case "cabinets":
-                return "/katalog/cabinets";
+                return "/catalog/cabinets";
             case "beds":
-                return "/katalog/beds";
+                return "/catalog/beds";
             case "tv_stands":
-                return "/katalog/tv_stands";
+                return "/catalog/tv_stands";
             case "coffee_tables":
-                return "/katalog/coffee_tables";
+                return "/catalog/coffee_tables";
             case "kitchenettes":
-                return "/katalog/kitchenettes";
+                return "/catalog/kitchenettes";
             case "tables":
-                return "/katalog/tables";
+                return "/catalog/tables";
             case "mattresses":
-                return "/katalog/mattresses";
+                return "/catalog/mattresses";
             default:
                 break;
         }
@@ -45,7 +44,7 @@ const Breadcrumb = ({ element }) => {
                             color: "black",
                             textDecoration: "none",
                         }}
-                        to={"/katalog"}>
+                        to={"/catalog"}>
                         <span>Каталог</span>
                     </Link>
                 </li>
@@ -55,7 +54,7 @@ const Breadcrumb = ({ element }) => {
             return (
                 <>
                     <li className="breadcrumb-item" aria-current="page">
-                        <Link to={"/katalog"}>
+                        <Link to={"/catalog"}>
                             <span>Каталог</span>
                         </Link>
                     </li>
@@ -68,7 +67,7 @@ const Breadcrumb = ({ element }) => {
             return (
                 <>
                     <li className="breadcrumb-item ">
-                        <Link to={"/katalog"}>
+                        <Link to={"/catalog"}>
                             <span>Каталог</span>
                         </Link>
                     </li>
