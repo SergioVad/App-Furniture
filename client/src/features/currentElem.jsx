@@ -1,17 +1,16 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import {
     deleteFurniture,
     getFurnitureByName,
     getFurnitureLoadingStatus,
-} from "../app/store/furniture";
-import { getCurrentUserData } from "../app/store/users";
+} from '../app/store/furniture';
+import { getCurrentUserData } from '../app/store/users';
 // import SimilarFurn from "./similarFurn";
-import config from "../app/config.json";
-import { addRuble } from "@/shared/utils/addRuble";
-import Breadcrumb from "./breadCrumb";
-import CategoryUnderItem from "@/entities/categoryUnderItem";
+import config from '../app/config.json';
+import { addRuble } from '@/shared/utils/addRuble';
+import { Breadcrumb } from '../shared/ui/breadCrumb/breadCrumb';
+import CategoryUnderItem from '@/entities/categoryUnderItem';
 
 const CurrentElem = () => {
     const { currentElement, currentCategory } = useParams();
@@ -28,26 +27,32 @@ const CurrentElem = () => {
     if (currentElement && !loading) {
         return (
             <div className="d-flex flex-column offset-2 col-10 p-3">
-                <Breadcrumb element={furnitureByName} />
+                <Breadcrumb
+                    currentCategory={currentCategory}
+                    currentElement={currentElement}
+                />
                 <div className="d-flex align-items-center">
                     <h2 className="header-item-slider">
                         {furnitureByName.product_name_rus}
                     </h2>
-                    {user && user.type === "admin" && (
+                    {user && user.type === 'admin' && (
                         <div>
                             <button
                                 onClick={() =>
                                     handleDelete(furnitureByName._id)
                                 }
                                 className="btn btn-danger"
-                                style={{ height: "50px" }}>
+                                style={{ height: '50px' }}
+                            >
                                 Удалить
                             </button>
                             <Link
-                                to={`/catalog/${currentCategory}/${furnitureByName.product_name}/editElem`}>
+                                to={`/catalog/${currentCategory}/${furnitureByName.product_name}/editElem`}
+                            >
                                 <button
                                     className="btn btn-warning mx-3"
-                                    style={{ height: "50px" }}>
+                                    style={{ height: '50px' }}
+                                >
                                     Изменить
                                 </button>
                             </Link>
@@ -59,13 +64,15 @@ const CurrentElem = () => {
                     <div className="col-7">
                         <div
                             id="carouselExampleIndicators"
-                            className="carousel slide d-flex justify-content-center">
+                            className="carousel slide d-flex justify-content-center"
+                        >
                             <div className="carousel-inner mb-3">
                                 {furnitureByName.product_image.map(
                                     (item, index) => (
                                         <div
                                             key={index}
-                                            className={`carousel-item${index === 0 ? " active" : ""}`}>
+                                            className={`carousel-item${index === 0 ? ' active' : ''}`}
+                                        >
                                             <div className="divImgCarousel d-flex justify-content-center align-items-center">
                                                 <img
                                                     className="imgCarousel"
@@ -80,13 +87,13 @@ const CurrentElem = () => {
                                 )}
                             </div>
                             <img
-                                src={config.imgSource + "arrow/prev.svg"}
+                                src={config.imgSource + 'arrow/prev.svg'}
                                 className="btn carousel-control-prev arrow-prev-img"
                                 data-bs-target="#carouselExampleIndicators"
                                 data-bs-slide="prev"
                             />
                             <img
-                                src={config.imgSource + "arrow/next.svg"}
+                                src={config.imgSource + 'arrow/next.svg'}
                                 className="btn carousel-control-next arrow-next-img"
                                 data-bs-target="#carouselExampleIndicators"
                                 data-bs-slide="next"
@@ -99,7 +106,8 @@ const CurrentElem = () => {
                         {furnitureByName.product_image.map((item, index) => (
                             <div
                                 key={index}
-                                className="right-block-slider-item d-flex flex-column align-items-center">
+                                className="right-block-slider-item d-flex flex-column align-items-center"
+                            >
                                 <img
                                     src={config.imgSource + item}
                                     className="right-block-slider-item-img"
@@ -157,7 +165,7 @@ const CurrentElem = () => {
                 <CategoryUnderItem slide={0} />
             </div>
         );
-    } else return "loading...";
+    } else return 'loading...';
 };
 
 export default CurrentElem;

@@ -1,7 +1,7 @@
-import { logOut } from "@/app/store/users";
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { logOut } from '@/app/store/users';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 const LogOut = () => {
     const dispatch = useDispatch();
     useEffect(() => {

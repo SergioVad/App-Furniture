@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from 'react';
 
 const SearchElemContext = createContext();
 
@@ -7,7 +7,7 @@ export const useSearchElem = () => {
 };
 
 export const SearchElemProviders = ({ children }) => {
-    const [valueSearch, setValueSearch] = useState("");
+    const [valueSearch, setValueSearch] = useState('');
     return (
         <SearchElemContext.Provider value={{ valueSearch, setValueSearch }}>
             {children}

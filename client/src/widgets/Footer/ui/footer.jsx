@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const Footer = () => {
+export const Footer = () => {
     return (
         <div
             className="footer offset-2 text-white p-2"
-            style={{ backgroundColor: "rgb(22, 22, 22)" }}>
+            style={{ backgroundColor: 'rgb(22, 22, 22)' }}
+        >
             <div className="d-flex m-3 justify-content-around">
                 <div className="d-flex flex-column align-items-center">
                     <div className="mb-2">Информация</div>
@@ -26,14 +26,15 @@ const Footer = () => {
                     <span className="h4">8-964-042-14-85</span> <br /> Режим
                     работы: с 09:00 до 20:00 (МСК)
                     <br />
-                    <div style={{ width: "50px", height: "50px" }}>
+                    <div style={{ width: '50px', height: '50px' }}>
                         <Link
                             aria-current="page"
                             to="/login"
                             className="title-link"
                             style={{
-                                color: "rgb(22, 22, 22)",
-                            }}>
+                                color: 'rgb(22, 22, 22)',
+                            }}
+                        >
                             Login
                         </Link>
                     </div>
@@ -42,5 +43,3 @@ const Footer = () => {
         </div>
     );
 };
-
-export default Footer;

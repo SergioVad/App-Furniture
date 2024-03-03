@@ -1,12 +1,11 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Loader } from "@/shared/lib/hooks/loader";
-import CatalogMainMenu from "@/features/catalogMainMenu";
-import { getFurniture, getFurnitureLoadingStatus } from "@/app/store/furniture";
-import SliderMailFurn from "@/features/sliderMainFurn";
-import DiscountFurn from "@/entities/discountFurn";
-import PopularFurn from "@/entities/popularFurn";
-import Services from "@/entities/services";
+import { useSelector } from 'react-redux';
+import { Loader } from '@/shared/lib/hooks/loader';
+import CatalogMainMenu from '@/entities/catalog/ui/catalogMainMenu';
+import { getFurniture, getFurnitureLoadingStatus } from '@/app/store/furniture';
+import SliderMailFurn from '@/features/sliderMainFurn/ui/sliderMainFurn';
+import DiscountFurn from '@/entities/discountFurn';
+import PopularFurn from '@/entities/popularFurn';
+import Services from '@/entities/services';
 
 const MainPage = () => {
     const furniture = useSelector(getFurniture());
@@ -15,8 +14,8 @@ const MainPage = () => {
         <Loader />;
     }
     if (!loading && furniture) {
-        const discountFurn = furniture.filter((u) => u.type === "discount");
-        const popularFurn = furniture.filter((u) => u.type === "popular");
+        const discountFurn = furniture.filter((u) => u.type === 'discount');
+        const popularFurn = furniture.filter((u) => u.type === 'popular');
         return (
             discountFurn &&
             popularFurn && (

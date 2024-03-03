@@ -1,10 +1,10 @@
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { searchFurn } from "../app/store/furniture";
-import Links from "../shared/links";
-import { useSearchElem } from "../shared/lib/hooks/useSearchElem";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { searchFurn } from '../../../app/store/furniture';
+import Links from '../../../shared/links';
+import { useSearchElem } from '../../../shared/lib/hooks/useSearchElem';
 
-const NavMenu = () => {
+export const Sidebar = () => {
     const { setValueSearch } = useSearchElem();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -14,7 +14,7 @@ const NavMenu = () => {
         let trueValue;
         if (value) {
             for (let i = 0; i < value.length; i++) {
-                if (value[i] === " ") {
+                if (value[i] === ' ') {
                     value[i + 1] = value[i + 1].toUpperCase();
                 }
             }
@@ -22,13 +22,14 @@ const NavMenu = () => {
             setValueSearch(trueValue);
             navigate(`/catalog/search`);
             dispatch(searchFurn(trueValue));
-            e.target.searchFurn.value = "";
+            e.target.searchFurn.value = '';
         }
     };
     return (
         <aside
             className="navMenu-width position-fixed bg-white h-100"
-            style={{ position: "absolute", zIndex: "100" }}>
+            style={{ position: 'absolute', zIndex: '100' }}
+        >
             <div className="">
                 {/* <div className="div-town h6 mb-4">Город Черкесск</div> */}
                 {/* <div
@@ -60,5 +61,3 @@ const NavMenu = () => {
         </aside>
     );
 };
-
-export default NavMenu;

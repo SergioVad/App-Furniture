@@ -1,18 +1,18 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getCurrentUserData, getIsLoggedIn } from "../app/store/users";
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getCurrentUserData, getIsLoggedIn } from '../../../app/store/users';
 
-const Title = () => {
+export const Navbar = () => {
     const currentUser = useSelector(getCurrentUserData());
     const isLoggedIn = useSelector(getIsLoggedIn());
     return (
         <div
             className="offset-2 col-10"
             style={{
-                position: "relative",
-                backgroundColor: "rgb(231, 230, 230)",
-            }}>
+                position: 'relative',
+                backgroundColor: 'rgb(231, 230, 230)',
+            }}
+        >
             <div className="title">
                 <Link className="title-link" to="#">
                     Информация
@@ -57,5 +57,3 @@ const Title = () => {
         </div>
     );
 };
-
-export default Title;

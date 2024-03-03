@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
     editFurniture,
     getFurnitureByName,
     loadFurnitureListAdmin,
-} from "../app/store/furniture";
-import { getCurrentUserData } from "../app/store/users";
+} from '../../../app/store/furniture';
+import { getCurrentUserData } from '../../../app/store/users';
 
 const EditElem = () => {
     const navigate = useNavigate();
@@ -25,10 +25,10 @@ const EditElem = () => {
     const [file, setFile] = useState(null);
     const editElement = () => {
         const formDataEdit = new FormData();
-        formDataEdit.append("product_name_rus", product_name_rus);
-        formDataEdit.append("product_image", file);
-        formDataEdit.append("present_price", present_price);
-        formDataEdit.append("past_price", past_price);
+        formDataEdit.append('product_name_rus', product_name_rus);
+        formDataEdit.append('product_image', file);
+        formDataEdit.append('present_price', present_price);
+        formDataEdit.append('past_price', past_price);
         dispatch(editFurniture(formDataEdit, furnitureByName._id));
         dispatch(loadFurnitureListAdmin());
         navigate.goBack();
@@ -36,7 +36,7 @@ const EditElem = () => {
     const handleFile = ({ target }) => {
         setFile(target.files[0]);
     };
-    if (user && user.type === "admin") {
+    if (user && user.type === 'admin') {
         return (
             <div className="offset-3 col-6">
                 <Form>
@@ -45,7 +45,7 @@ const EditElem = () => {
                             Имя продукта
                         </Form.Label>
                         <Form.Control
-                            id={"product_name_rus"}
+                            id={'product_name_rus'}
                             value={product_name_rus}
                             onChange={(e) => setNameRus(e.target.value)}
                         />
@@ -53,7 +53,7 @@ const EditElem = () => {
                     <Form.Group className="mb-3">
                         <Form.Label htmlFor="present_price">Цена</Form.Label>
                         <Form.Control
-                            id={"present_price"}
+                            id={'present_price'}
                             value={present_price}
                             onChange={(e) => setPresentPrice(e.target.value)}
                         />
@@ -63,7 +63,7 @@ const EditElem = () => {
                             Старая цена
                         </Form.Label>
                         <Form.Control
-                            id={"past_price"}
+                            id={'past_price'}
                             value={past_price}
                             onChange={(e) => setPastPrice(e.target.value)}
                         />
@@ -74,7 +74,7 @@ const EditElem = () => {
                         </Form.Label>
                         <Form.Control
                             type="file"
-                            id={"product_image"}
+                            id={'product_image'}
                             onChange={handleFile}
                         />
                     </Form.Group>
@@ -85,7 +85,7 @@ const EditElem = () => {
             </div>
         );
     } else {
-        navigate("/");
+        navigate('/');
     }
 };
 

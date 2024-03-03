@@ -1,38 +1,16 @@
 import { useSelector } from "react-redux";
-import { Navigate, Route } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { getIsLoggedIn } from "./store/users";
-import PropTypes from "prop-types";
-const ProtectedRoute = ({ component: Component, children, ...rest }) => {
+export const ProtectedRoute = () => {
     const isLoggedIn = useSelector(getIsLoggedIn());
-    return (
-        <Route
-            {...rest}
-            render={(props) => {
-                if (!isLoggedIn) {
-                    return (
-                        <Navigate
-                            to={{
-                                pathname: "/login",
-                                state: {
-                                    from: props.location,
-                                },
-                            }}
-                        />
-                    );
-                }
-                return Component ? <Component {...props} /> : children;
-            }}
-        />
-    );
+    if (!isLoggedIn) {
+        return (
+            <Navigate
+                to={{
+                    pathname: "/login",
+                }}
+            />
+        );
+    }
+    return <Outlet />;
 };
-
-ProtectedRoute.propTypes = {
-    component: PropTypes.func,
-    location: PropTypes.object,
-    children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node,
-    ]),
-};
-
-export default ProtectedRoute;

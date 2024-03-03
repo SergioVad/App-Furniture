@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { getFurnitureLoadingStatus } from "../app/store/furniture";
-import { getCurrentUserData } from "../app/store/users";
-import { arrCatalog, rusArrCatalog } from "../shared/links";
-import config from "../app/config.json";
-import { addRuble } from "../shared/utils/addRuble";
-import { PageLoader } from "@/pages/pageLoader";
-import Breadcrumb from "./breadCrumb";
-import Pagination from "./pagination";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { getFurnitureLoadingStatus } from '../app/store/furniture';
+import { getCurrentUserData } from '../app/store/users';
+import { arrCatalog, rusArrCatalog } from '../shared/links';
+import config from '../app/config.json';
+import { addRuble } from '../shared/utils/addRuble';
+import { PageLoader } from '@/pages/pageLoader';
+import { Breadcrumb } from '../shared/ui/breadCrumb/breadCrumb';
+import Pagination from './pagination/ui/pagination';
 
 const CurrentCategory = ({ value }) => {
     const user = useSelector(getCurrentUserData());
@@ -36,7 +36,7 @@ const CurrentCategory = ({ value }) => {
             setCurrentPage(page);
         };
         const paginate = (items, pageNumber, pageSize) => {
-            if (currentCategory === "kitchens") {
+            if (currentCategory === 'kitchens') {
                 return;
             }
             const startIndex = (pageNumber - 1) * pageSize;
@@ -46,9 +46,9 @@ const CurrentCategory = ({ value }) => {
         return (
             <div className="d-flex">
                 <div className="d-flex flex-column offset-2 col-10 p-3">
-                    <Breadcrumb />
+                    <Breadcrumb currentCategory={currentCategory} />
                     <div className="d-flex align-items-center">
-                        {currentCategory !== "search" ? (
+                        {currentCategory !== 'search' ? (
                             <h2 className="me-4">
                                 {rusArrCatalog[categoryIndex]}
                             </h2>
@@ -56,7 +56,7 @@ const CurrentCategory = ({ value }) => {
                             <h2 className="me-4">Найденные товары</h2>
                         )}
 
-                        {user && user.type === "admin" && (
+                        {user && user.type === 'admin' && (
                             <Link to="/product-change">
                                 <button className="btn btn-primary">
                                     Добавить
@@ -69,13 +69,15 @@ const CurrentCategory = ({ value }) => {
                             {arrCrop.map((item) => (
                                 <div
                                     key={item.id_product}
-                                    className="cardInMainPage card mb-4">
+                                    className="cardInMainPage card mb-4"
+                                >
                                     <Link
                                         style={{
-                                            textDecoration: "none",
-                                            color: "inherit",
+                                            textDecoration: 'none',
+                                            color: 'inherit',
                                         }}
-                                        to={`/catalog/${item.category_product}/${item.product_name}`}>
+                                        to={`/catalog/${item.category_product}/${item.product_name}`}
+                                    >
                                         <div>
                                             <img
                                                 className="cardImgInMainPage"
@@ -84,13 +86,14 @@ const CurrentCategory = ({ value }) => {
                                                     item.product_image[0]
                                                 }
                                             />
-                                            {item.type === "discount" && (
+                                            {item.type === 'discount' && (
                                                 <div className="discountValue">
                                                     <span
                                                         style={{
-                                                            color: "#cd0404",
-                                                            fontWeight: "bold",
-                                                        }}>
+                                                            color: '#cd0404',
+                                                            fontWeight: 'bold',
+                                                        }}
+                                                    >
                                                         -50%
                                                     </span>
                                                 </div>
@@ -105,11 +108,12 @@ const CurrentCategory = ({ value }) => {
                                                         item.present_price,
                                                     )}
                                                 </h4>
-                                                {item.type === "discount" && (
+                                                {item.type === 'discount' && (
                                                     <s
                                                         style={{
-                                                            color: "#6e6d6d",
-                                                        }}>
+                                                            color: '#6e6d6d',
+                                                        }}
+                                                    >
                                                         {addRuble(
                                                             item.past_price,
                                                         )}
@@ -123,10 +127,11 @@ const CurrentCategory = ({ value }) => {
                                         <div className="d-flex justify-content-between align-items-center">
                                             <Link
                                                 style={{
-                                                    textDecoration: "none",
-                                                    color: "inherit",
+                                                    textDecoration: 'none',
+                                                    color: 'inherit',
                                                 }}
-                                                to={`/catalog/${item.category_product}/${item.product_name}`}></Link>
+                                                to={`/catalog/${item.category_product}/${item.product_name}`}
+                                            ></Link>
                                         </div>
                                     </div>
                                 </div>

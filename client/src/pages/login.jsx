@@ -1,50 +1,14 @@
-import LoginForm from "@/features/loginForm";
-import RegisterForm from "@/widgets/registerForm";
-import React, { useState } from "react";
-import { useParams } from "react-router";
+import LoginForm from '@/features/loginForm/ui/loginForm';
 
-const Login = () => {
-    const { type } = useParams();
-    const [formType, setFormType] = useState(
-        type === "register" ? type : "login",
-    );
-    const toggleFormType = () => {
-        setFormType((prevState) =>
-            prevState === "register" ? "login" : "register",
-        );
-    };
+export const Login = () => {
     return (
         <div className="container mt-5">
             <div className="row">
                 <div className="col-6 offset-3 shadow p-4">
-                    {formType === "register" ? (
-                        <>
-                            <h3 className="mb-4">Регистрация</h3>
-                            <RegisterForm />
-                            <p>
-                                Already have account?{" "}
-                                <a role="button" onClick={toggleFormType}>
-                                    {" "}
-                                    Sign In
-                                </a>
-                            </p>
-                        </>
-                    ) : (
-                        <>
-                            <h3 className="mb-4">Логин</h3>
-                            <LoginForm />
-                            <p>
-                                Dont have account?{" "}
-                                <a role="button" onClick={toggleFormType}>
-                                    {" "}
-                                    Sign Up
-                                </a>
-                            </p>
-                        </>
-                    )}
+                    <h3 className="mb-4">Логин</h3>
+                    <LoginForm />
                 </div>
             </div>
         </div>
     );
 };
-export default Login;

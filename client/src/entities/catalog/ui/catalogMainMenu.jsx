@@ -1,7 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import config from "../app/config.json";
-import { arrCatalog, rusArrCatalog } from "../shared/links";
+import { Link } from 'react-router-dom';
+import config from '../app/config.json';
+import { arrCatalog, rusArrCatalog } from '../../../shared/links';
 
 const CatalogMainMenu = () => {
     return (
@@ -10,14 +9,15 @@ const CatalogMainMenu = () => {
                 <div
                     key={index}
                     style={{
-                        position: "relative",
-                        width: "33%",
-                    }}>
+                        position: 'relative',
+                        width: '33%',
+                    }}
+                >
                     <Link to={`/catalog/${item}`}>
                         <img
                             src={config.imgSource + `catalog/${item}.jpg`}
                             className=" text-warning text-center me-1 mb-2"
-                            style={{ width: "100%", height: "19vw" }}
+                            style={{ width: '100%', height: '19vw' }}
                         />
                         <div className="block_catalog">
                             {rusArrCatalog[index]}
