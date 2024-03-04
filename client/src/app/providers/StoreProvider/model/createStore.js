@@ -1,7 +1,6 @@
-import usersReducer from "../../../store/users";
-import furnitureReducer from "../../../store/furniture";
-
-const { combineReducers, configureStore } = require("@reduxjs/toolkit");
+import { furnitureReducer } from '@/app/store/furniture';
+import { usersReducer } from '@/app/store/users';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 const rootReducer = combineReducers({
     users: usersReducer,

@@ -1,8 +1,8 @@
-import { createAction, createSlice } from "@reduxjs/toolkit";
-import authService from "../services/auth.service";
-import localStorageService from "../services/localStorage.service";
-import userService from "../services/user.service";
-import { generetaAuthError } from "../../shared/utils/generateAuthError";
+import { createAction, createSlice } from '@reduxjs/toolkit';
+import { localStorageService } from '../services/localStorage.service';
+import { authService } from '../services/auth.service';
+import { generetaAuthError } from '@/shared/utils/generateAuthError';
+import { userService } from '../services/user.service';
 const initialState = localStorageService.getAccessToken()
     ? {
           entities: null,
@@ -24,7 +24,7 @@ const initialState = localStorageService.getAccessToken()
       };
 
 const usersSlice = createSlice({
-    name: "users",
+    name: 'users',
     initialState,
     reducers: {
         usersRequested: (state) => {
@@ -66,7 +66,7 @@ const usersSlice = createSlice({
     },
 });
 
-const { reducer: usersReducer, actions } = usersSlice;
+export const { reducer: usersReducer, actions } = usersSlice;
 const {
     usersRequested,
     usersReceved,
@@ -77,9 +77,9 @@ const {
     userUpdateSuccessed,
 } = actions;
 
-const authRequested = createAction("users/authRequested");
-const userUpdateFailed = createAction("users/userUpdateFailed");
-const userUpdateRequested = createAction("users/userUpdateRequested");
+const authRequested = createAction('users/authRequested');
+const userUpdateFailed = createAction('users/userUpdateFailed');
+const userUpdateRequested = createAction('users/userUpdateRequested');
 
 export const login =
     ({ payload }) =>
@@ -154,7 +154,7 @@ export const getUserById = (userId) => (state) => {
 };
 export const getAdminUser = () => (state) => {
     if (state.user.entities) {
-        return state.user.entities.map((u) => u.email === "superstar@star.com");
+        return state.user.entities.map((u) => u.email === 'superstar@star.com');
     }
 };
 export const getIsLoggedIn = () => (state) => state.users.isLoggedIn;
@@ -162,4 +162,3 @@ export const getDataStatus = () => (state) => state.users.dataLoaded;
 export const getUsersLoadingStatus = () => (state) => state.users.isLoading;
 export const getCurrentUserId = () => (state) => state.users.auth.userId;
 export const getAuthErrors = () => (state) => state.users.error;
-export default usersReducer;

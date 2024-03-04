@@ -1,23 +1,23 @@
-import axios from "axios";
-import config from "../config.json";
-import authService from "./auth.service";
-
-import localStorageService from "./localStorage.service";
+import { constApi } from '@/shared/const/constApi';
+import axios from 'axios';
+import { localStorageService } from './localStorage.service';
+import { authService } from './auth.service';
 
 const http = axios.create({
-    baseURL: config.apiEndpoint,
+    baseURL: constApi.apiEndpoint,
 });
 
 http.interceptors.request.use(
-    async function (config) {
+    async function (constApi) {
         const expiresDate = localStorageService.getTokenExpiresDate();
         const refreshToken = localStorageService.getRefreshToken();
         const isExpired = refreshToken && expiresDate < Date.now();
 
-        if (config.isFireBase) {
-            const containSlash = /\/$/gi.test(config.url);
-            config.url =
-                (containSlash ? config.url.slice(0, -1) : config.url) + ".json";
+        if (constApi.isFireBase) {
+            const containSlash = /\/$/gi.test(constApi.url);
+            constApi.url =
+                (containSlash ? constApi.url.slice(0, -1) : constApi.url) +
+                '.json';
             if (isExpired) {
                 const data = await authService.refresh();
 
@@ -30,7 +30,7 @@ http.interceptors.request.use(
             }
             const accessToken = localStorageService.getAccessToken();
             if (accessToken) {
-                config.params = { ...config.params, auth: accessToken };
+                constApi.params = { ...constApi.params, auth: accessToken };
             }
         } else {
             if (isExpired) {
@@ -39,13 +39,13 @@ http.interceptors.request.use(
             }
             const accessToken = localStorageService.getAccessToken();
             if (accessToken) {
-                config.headers = {
-                    ...config.headers,
+                constApi.headers = {
+                    ...constApi.headers,
                     Authorization: `Bearer ${accessToken}`,
                 };
             }
         }
-        return config;
+        return constApi;
     },
     function (error) {
         return Promise.reject(error);
@@ -62,7 +62,7 @@ function transormData(data) {
 
 http.interceptors.response.use(
     (res) => {
-        if (config.isFireBase) {
+        if (constApi.isFireBase) {
             res.data = { content: transormData(res.data) };
         }
         res.data = { content: res.data };
@@ -76,16 +76,15 @@ http.interceptors.response.use(
 
         if (!expectedErrors) {
             console.log(error);
-            console.log("Somthing was wrong. Try it later");
+            console.log('Somthing was wrong. Try it later');
         }
         return Promise.reject(error);
     },
 );
-const httpService = {
+export const httpService = {
     get: http.get,
     post: http.post,
     put: http.put,
     delete: http.delete,
     patch: http.patch,
 };
-export default httpService;

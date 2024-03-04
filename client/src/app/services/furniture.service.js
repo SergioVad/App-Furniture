@@ -1,11 +1,11 @@
-import axios from "axios";
-import config from "../config.json";
+import axios from 'axios';
+import { constApi } from '@/shared/const/constApi';
 
 const httpFurniture = axios.create({
-    baseURL: config.apiEndpoint + "/furniture/",
+    baseURL: constApi.apiEndpoint + '/furniture/',
 });
 
-const furnitureService = {
+export const furnitureService = {
     get: async () => {
         const data = await httpFurniture.get();
         return data;
@@ -31,5 +31,3 @@ const furnitureService = {
         return data;
     },
 };
-
-export default furnitureService;

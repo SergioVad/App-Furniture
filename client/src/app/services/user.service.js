@@ -1,9 +1,9 @@
-import httpService from "./http.service";
-import localStorageService from "./localStorage.service";
+import { httpService } from './http.service';
+import { localStorageService } from './localStorage.service';
 
-const userEndpoint = "user/";
+const userEndpoint = 'user/';
 
-const userService = {
+export const userService = {
     get: async () => {
         const { data } = await httpService.get(userEndpoint);
         return data;
@@ -16,4 +16,3 @@ const userService = {
         return data;
     },
 };
-export default userService;

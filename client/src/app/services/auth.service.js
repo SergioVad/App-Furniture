@@ -1,12 +1,12 @@
-import axios from "axios";
-import localStorageService from "./localStorage.service";
-import config from "../config.json";
+import axios from 'axios';
+import { localStorageService } from './localStorage.service';
+import { constApi } from '@/shared/const/constApi';
 
 const httpAuth = axios.create({
-    baseURL: config.apiEndpoint + "/auth/",
+    baseURL: constApi.apiEndpoint + '/auth/',
 });
 
-const authService = {
+export const authService = {
     register: async (payload) => {
         const { data } = await httpAuth.post(`signUp`, payload);
         return data;
@@ -20,11 +20,10 @@ const authService = {
         return data;
     },
     refresh: async () => {
-        const { data } = await httpAuth.post("token", {
-            grant_type: "refresh_token",
+        const { data } = await httpAuth.post('token', {
+            grant_type: 'refresh_token',
             refresh_token: localStorageService.getRefreshToken(),
         });
         return data;
     },
 };
-export default authService;

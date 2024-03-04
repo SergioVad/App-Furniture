@@ -1,14 +1,13 @@
 import { ProtectedRoute } from '@/app/protecredRoute';
-import ChangeProduct from '@/pages/changeProduct';
-import DostavkaSborka from '@/pages/dostavkaSborka';
-import Furniture from '@/pages/furniture';
-import LogOut from '@/pages/logOut';
-import Login from '@/pages/login';
-import MainPage from '@/pages/mainPage';
-import Payment from '@/pages/payment';
-import Edit from '@/pages/Edit/ui/edit';
-import EditElem from '@/pages/editElem/ui/editElem';
+import { DostavkaSborka } from '@/todo/universalComp/dostavkaSborka';
+import { FurniturePage } from '@/pages/FurniturePage/ui/furniturePage';
+import { LoginModal } from '@/features/loginModal/ui/loginModal';
+import { MainPage } from '@/pages/MainPage/ui/mainPage';
+import { Payment } from '@/todo/universalComp/payment';
+import { AllFurnPage } from '@/pages/AllFurnPage';
 import { Route, Routes } from 'react-router-dom';
+import { AddFurn } from '@/features/addFurn';
+import { EditElementPage } from '@/pages/EditElementPage';
 
 export const AppRoutes = () => {
     return (
@@ -20,11 +19,7 @@ export const AppRoutes = () => {
                     path="/product-change"
                     element={<ProtectedRoute />}
                 >
-                    <Route
-                        exact
-                        path="/product-change"
-                        element={<ChangeProduct />}
-                    />
+                    <Route exact path="/product-change" element={<AddFurn />} />
                 </Route>
                 <Route
                     exact
@@ -34,19 +29,18 @@ export const AppRoutes = () => {
                     <Route
                         exact
                         path="/catalog/:currentCategory/:currentElement/editElem"
-                        element={<EditElem />}
+                        element={<EditElementPage />}
                     />
                 </Route>
                 <Route exact path="/edit" element={<ProtectedRoute />}>
-                    <Route exact path="/edit" element={<Edit />} />
+                    <Route exact path="/edit" element={<AllFurnPage />} />
                 </Route>
                 <Route
                     path={'/catalog/:currentCategory?/:currentElement?'}
-                    element={<Furniture />}
+                    element={<FurniturePage />}
                     exact
                 />
-                <Route path={'/login/:type?'} exact element={<Login />} />
-                <Route path="/logout" exact element={<LogOut />} />
+                <Route path={'/login/:type?'} exact element={<LoginModal />} />
                 <Route
                     path={'/dostavka-sborka'}
                     exact

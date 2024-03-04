@@ -1,6 +1,4 @@
-import { React, useState } from "react";
-
-const Timer = ({ value }) => {
+export const Timer = ({ value }) => {
     // const [temp, setTemp] = useState(0);
     // setInterval(() => {
     //     setTemp((prevState) => prevState + 1);
@@ -10,9 +8,5 @@ const Timer = ({ value }) => {
         minutes = Math.floor((t / 1000 / 60) % 60),
         hours = Math.floor((t / 1000 / 60 / 60) % 24),
         days = Math.floor(t / 1000 / 60 / 60 / 24);
-    if (t === 0 || t < 0) {
-    }
     return `${days}: ${hours - 3}: ${minutes}: ${seconds}`;
 };
-
-export default Timer;

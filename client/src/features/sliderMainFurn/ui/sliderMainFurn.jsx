@@ -1,5 +1,5 @@
-import config from '../app/config.json';
-const SliderMailFurn = () => {
+import { constApi } from '@/shared/const/constApi';
+export const SliderMailFurn = () => {
     return (
         <>
             <div
@@ -8,7 +8,7 @@ const SliderMailFurn = () => {
                 data-bs-ride="auto"
                 style={{
                     background: `url(${
-                        config.imgSource + 'bg/qw.jpg'
+                        constApi.imgSource + 'bg/qw.jpg'
                     }) center center / 100% no-repeat`,
                 }}
             >
@@ -85,5 +85,3 @@ const SliderMailFurn = () => {
         </>
     );
 };
-
-export default SliderMailFurn;

@@ -30,7 +30,7 @@ export const rusArrCatalog = [
     'Матрасы',
 ];
 
-const Links = () => {
+export const Links = () => {
     const handlerScrollUp = () => {
         window.scrollTo({
             top: 0,
@@ -57,5 +57,3 @@ const Links = () => {
         </li>
     ));
 };
-
-export default Links;

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import config from '../app/config.json';
 import { arrCatalog, rusArrCatalog } from '../../../shared/links';
 import { Breadcrumb } from '../../../shared/ui/breadCrumb/breadCrumb';
+import { constApi } from '@/shared/const/constApi';
 
-const Catalog = () => {
+export const Catalog = () => {
     return (
         <div className="offset-2 p-3">
             <h2>Каталог</h2>
@@ -19,7 +19,7 @@ const Catalog = () => {
                     >
                         <Link to={`/catalog/${item}`}>
                             <img
-                                src={config.imgSource + `catalog/${item}.jpg`}
+                                src={constApi.imgSource + `catalog/${item}.jpg`}
                                 className=" text-warning text-center me-1 mb-2"
                                 style={{ width: '100%', height: '19vw' }}
                             />
@@ -33,5 +33,3 @@ const Catalog = () => {
         </div>
     );
 };
-
-export default Catalog;

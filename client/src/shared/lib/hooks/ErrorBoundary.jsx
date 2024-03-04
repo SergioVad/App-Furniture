@@ -1,5 +1,5 @@
-import { Component } from "react";
-import { PageError } from "@/pages/PageError";
+import { Component } from 'react';
+import { PageError } from '@/pages/PageError';
 
 export class ErrorBoundary extends Component {
     constructor(props) {

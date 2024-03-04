@@ -3,7 +3,7 @@ import { validator } from '../../../shared/utils/validator';
 import { useDispatch } from 'react-redux';
 import { login } from '../../../app/store/users';
 import { Navigate, useNavigate } from 'react-router-dom';
-import TextField from '../../../entities/textField';
+import { TextField } from '@/shared/ui/textField/textField';
 
 export const LoginForm = () => {
     const navigate = useNavigate();

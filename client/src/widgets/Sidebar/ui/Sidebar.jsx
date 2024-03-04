@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { searchFurn } from '../../../app/store/furniture';
-import Links from '../../../shared/links';
-import { useSearchElem } from '../../../shared/lib/hooks/useSearchElem';
+import { useSearchElem } from '@/shared/lib/hooks/useSearchElem';
+import { searchFurn } from '@/app/store/furniture';
+import { Links } from '@/shared/links';
 
 export const Sidebar = () => {
     const { setValueSearch } = useSearchElem();

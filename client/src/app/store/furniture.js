@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import furnitureService from "../services/furniture.service";
-import isOutdated from "../../shared/utils/isOutdated";
+import { isOutdated } from '@/shared/utils/isOutdated';
+import { createSlice } from '@reduxjs/toolkit';
+import { furnitureService } from '../services/furniture.service';
 
 const initialState = {
     entities: null,
@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const furnitureSlice = createSlice({
-    name: "furniture",
+    name: 'furniture',
     initialState,
     reducers: {
         furnitureRequested: (state) => {
@@ -49,7 +49,7 @@ const furnitureSlice = createSlice({
     },
 });
 
-const { reducer: furnitureReducer, actions } = furnitureSlice;
+export const { reducer: furnitureReducer, actions } = furnitureSlice;
 const {
     furnitureRequested,
     furnitureReceved,
@@ -159,4 +159,3 @@ export const getFurnitureById = (id) => (state) => {
         return state.furniture.entities.find((u) => u._id === id);
     }
 };
-export default furnitureReducer;
