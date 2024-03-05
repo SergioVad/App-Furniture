@@ -1,4 +1,3 @@
-import { isOutdated } from '@/shared/utils/isOutdated';
 import { createSlice } from '@reduxjs/toolkit';
 import { furnitureService } from '../services/furniture.service';
 
@@ -6,7 +5,6 @@ const initialState = {
     entities: null,
     isLoading: true,
     error: null,
-    lastFetch: null,
 };
 
 const furnitureSlice = createSlice({
@@ -18,7 +16,6 @@ const furnitureSlice = createSlice({
         },
         furnitureReceved: (state, action) => {
             state.entities = action.payload;
-            state.lastFetch = Date.now();
             state.isLoading = false;
         },
         furnitureRequestFiled: (state, action) => {
@@ -60,9 +57,7 @@ const {
     furnitureEdit,
 } = actions;
 
-export const loadFurnitureList = () => async (dispatch, getState) => {
-    const { lastFetch } = getState().furniture;
-    if (isOutdated(lastFetch)) {
+export const loadFurnitureList = () => async (dispatch) => {
         dispatch(furnitureRequested());
         try {
             const { data } = await furnitureService.get();
@@ -70,7 +65,6 @@ export const loadFurnitureList = () => async (dispatch, getState) => {
         } catch (error) {
             dispatch(furnitureRequestFiled(error.message));
         }
-    }
 };
 export const loadFurnitureListAdmin = () => async (dispatch) => {
     dispatch(furnitureRequested());
@@ -124,14 +118,6 @@ export const searchFurn = (value) => async (dispatch) => {
 };
 export const getFurniture = () => (state) => {
     return state.furniture.entities;
-};
-
-export const getFurnitureByCategory = (value) => (state) => {
-    if (state.furniture.entities) {
-        return state.furniture.entities.filter(
-            (u) => u.category_product === value,
-        );
-    }
 };
 
 export const getFurnitureLoadingStatus = () => (state) =>

@@ -1,4 +1,4 @@
-import { ProtectedRoute } from '@/app/protecredRoute';
+import { ProtectedRoute } from '@/shared/lib/protecredRoute/protecredRoute';
 import { DostavkaSborka } from '@/todo/universalComp/dostavkaSborka';
 import { FurniturePage } from '@/pages/FurniturePage/ui/furniturePage';
 import { LoginModal } from '@/features/loginModal/ui/loginModal';

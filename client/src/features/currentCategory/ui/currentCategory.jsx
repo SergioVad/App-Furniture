@@ -1,48 +1,38 @@
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { getFurnitureLoadingStatus } from '../../../app/store/furniture';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { getCurrentUserData } from '../../../app/store/users';
 import { arrCatalog, rusArrCatalog } from '../../../shared/links';
 import { addRuble } from '../../../shared/utils/addRuble';
 import { PageLoader } from '@/pages/PageLoader/ui/pageLoader';
 import { Breadcrumb } from '../../../shared/ui/breadCrumb/breadCrumb';
-import { Pagination } from '../../pagination/ui/pagination';
 import { constApi } from '@/shared/const/constApi';
+import { useCurrentCategoryQuery } from '../api/currentCategoryApi';
 
 export const CurrentCategory = ({ value }) => {
+    let [searchParams] = useSearchParams();
+    console.log('searchParams', searchParams)
     const user = useSelector(getCurrentUserData());
-    const furnitureLoading = useSelector(getFurnitureLoadingStatus());
-    const [currentPage, setCurrentPage] = useState(1);
+    const {isError, isLoading, data: category} = useCurrentCategoryQuery(value)
     const { currentCategory } = useParams();
-    useEffect(() => {
-        setCurrentPage(1);
-    }, [value]);
-    if (!value && furnitureLoading) {
+    const test = searchParams.get('name')
+    console.log('test', test)
+    const categoryIndex = arrCatalog.findIndex(
+        (item) => item === currentCategory,
+    );
+    if (isError) {
+        return (
+            <div>
+                error...
+            </div>
+        )
+    }
+    if (isLoading) {
         return (
             <div className="offset-2 h3 d-flex justify-content-center my-5">
                 <PageLoader />
             </div>
         );
-    } else {
-        const categoryIndex = arrCatalog.findIndex(
-            (item) => item === currentCategory,
-        );
-
-        const count = value.length;
-        const pageSize = 20;
-
-        const handlePageChange = (page) => {
-            setCurrentPage(page);
-        };
-        const paginate = (items, pageNumber, pageSize) => {
-            if (currentCategory === 'kitchens') {
-                return;
-            }
-            const startIndex = (pageNumber - 1) * pageSize;
-            return [...items].splice(startIndex, pageSize);
-        };
-        const arrCrop = paginate(value, currentPage, pageSize);
+    } 
         return (
             <div className="d-flex">
                 <div className="d-flex flex-column offset-2 col-10 p-3">
@@ -64,9 +54,8 @@ export const CurrentCategory = ({ value }) => {
                             </Link>
                         )}
                     </div>
-                    {arrCrop && (
                         <div className="d-flex flex-wrap mt-4">
-                            {arrCrop.map((item) => (
+                            {category.map((item) => (
                                 <div
                                     key={item.id_product}
                                     className="cardInMainPage card mb-4"
@@ -137,17 +126,7 @@ export const CurrentCategory = ({ value }) => {
                                 </div>
                             ))}
                         </div>
-                    )}
-                    {arrCrop && (
-                        <Pagination
-                            itemsCount={count}
-                            pageSize={pageSize}
-                            onPageChange={handlePageChange}
-                            currentPage={currentPage}
-                        />
-                    )}
                 </div>
             </div>
         );
     }
-};

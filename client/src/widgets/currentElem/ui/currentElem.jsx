@@ -3,7 +3,6 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import {
     deleteFurniture,
     getFurnitureByName,
-    getFurnitureLoadingStatus,
 } from '../../../app/store/furniture';
 import { getCurrentUserData } from '../../../app/store/users';
 import { constApi } from '@/shared/const/constApi';
@@ -16,14 +15,13 @@ export const CurrentElem = () => {
     const dispatch = useDispatch();
     const user = useSelector(getCurrentUserData());
 
-    const loading = useSelector(getFurnitureLoadingStatus());
     const furnitureByName = useSelector(getFurnitureByName(currentElement));
     const handleDelete = (userId) => {
         dispatch(deleteFurniture(userId));
         <Navigate to={`/catalog/${currentCategory}`} replace />;
     };
 
-    if (currentElement && !loading) {
+    if (currentElement) {
         return (
             <div className="d-flex flex-column offset-2 col-10 p-3">
                 <Breadcrumb
