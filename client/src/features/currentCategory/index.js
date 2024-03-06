@@ -1,1 +1,1 @@
-export { CurrentCategory } from './ui/currentCategory';
+export { CurrentCategoryAsync } from './ui/currentCategory.async';

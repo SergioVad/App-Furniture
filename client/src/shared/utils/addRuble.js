@@ -12,6 +12,6 @@ export const addRuble = (val) => {
         case 8:
             return `${value.slice(0, 2)} ${value.slice(2, 5)} ${value.slice(5)} ₽`;
         default:
-            return value + " ₽";
+            return value + ' ₽';
     }
 };

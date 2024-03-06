@@ -13,6 +13,6 @@ export function createStore() {
     return configureStore({
         reducer: rootReducer,
         middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(rtkApi.middleware),
+            getDefaultMiddleware().concat(rtkApi.middleware),
     });
 }

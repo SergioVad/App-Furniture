@@ -53,19 +53,9 @@ const {
     furnitureRequestFiled,
     furnitureAdd,
     furnitureDelete,
-    furnSearch,
     furnitureEdit,
 } = actions;
 
-export const loadFurnitureList = () => async (dispatch) => {
-        dispatch(furnitureRequested());
-        try {
-            const { data } = await furnitureService.get();
-            dispatch(furnitureReceved(data));
-        } catch (error) {
-            dispatch(furnitureRequestFiled(error.message));
-        }
-};
 export const loadFurnitureListAdmin = () => async (dispatch) => {
     dispatch(furnitureRequested());
     try {
@@ -107,15 +97,6 @@ export const editFurniture = (elem, id) => async (dispatch) => {
         dispatch(furnitureRequestFiled(error.message));
     }
 };
-export const searchFurn = (value) => async (dispatch) => {
-    dispatch(furnitureRequested());
-    try {
-        const { data } = await furnitureService.getCurrentFurn(value);
-        dispatch(furnSearch(data));
-    } catch (error) {
-        dispatch(furnitureRequestFiled(error.message));
-    }
-};
 export const getFurniture = () => (state) => {
     return state.furniture.entities;
 };
@@ -126,16 +107,6 @@ export const getFurnitureByName = (product_name) => (state) => {
     if (state.furniture.entities) {
         return state.furniture.entities.find(
             (p) => p.product_name === product_name,
-        );
-    }
-};
-
-export const getArrayByName = (value) => (state) => {
-    if (state.furniture.entities) {
-        return state.furniture.entities.filter(
-            (p) =>
-                p.product_name_rus.toLowerCase().indexOf(value.toLowerCase()) >
-                -1,
         );
     }
 };

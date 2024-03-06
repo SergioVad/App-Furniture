@@ -81,28 +81,26 @@ const authRequested = createAction('users/authRequested');
 const userUpdateFailed = createAction('users/userUpdateFailed');
 const userUpdateRequested = createAction('users/userUpdateRequested');
 
-export const login =
-    ({ payload }) =>
-    async (dispatch) => {
-        dispatch(authRequested());
-        try {
-            const data = await authService.login(payload);
-            localStorageService.setTokens(data);
-            dispatch(
-                authRequestSuccess({
-                    userId: data.userId,
-                }),
-            );
-        } catch (error) {
-            const { code, message } = error.response.data.error;
-            if (code === 400) {
-                const errorMessage = generetaAuthError(message);
-                dispatch(authRequestFailed(errorMessage));
-            } else {
-                dispatch(authRequestFailed(error.message));
-            }
+export const login = (payload) => async (dispatch) => {
+    dispatch(authRequested());
+    try {
+        const data = await authService.login(payload);
+        localStorageService.setTokens(data);
+        dispatch(
+            authRequestSuccess({
+                userId: data.userId,
+            }),
+        );
+    } catch (error) {
+        const { code, message } = error.response.data.error;
+        if (code === 400) {
+            const errorMessage = generetaAuthError(message);
+            dispatch(authRequestFailed(errorMessage));
+        } else {
+            dispatch(authRequestFailed(error.message));
         }
-    };
+    }
+};
 
 export const signUp = (payload) => async (dispatch) => {
     dispatch(authRequested());

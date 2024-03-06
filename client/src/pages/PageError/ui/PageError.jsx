@@ -1,6 +1,6 @@
 export const PageError = () => {
     const handleReloadPage = () => {
-        window.location.assign("/");
+        window.location.assign('/');
     };
     return (
         <div className="pageError">

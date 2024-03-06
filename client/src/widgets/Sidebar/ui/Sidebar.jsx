@@ -1,14 +1,8 @@
-import { useDispatch } from 'react-redux';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useSearchElem } from '@/shared/lib/hooks/useSearchElem';
-import { searchFurn } from '@/app/store/furniture';
+import { useNavigate } from 'react-router-dom';
 import { Links } from '@/shared/links';
 
 export const Sidebar = () => {
-    const { setValueSearch } = useSearchElem();
-    const dispatch = useDispatch();
     const navigate = useNavigate();
-    let [searchParams, setSearchParams] = useSearchParams();
     const handleSubmit = (e) => {
         e.preventDefault();
         const value = e.target.searchFurn.value.trim();
@@ -20,13 +14,7 @@ export const Sidebar = () => {
                 }
             }
             trueValue = value[0].toUpperCase() + value.slice(1).toLowerCase();
-            setValueSearch(trueValue);
-            setSearchParams(params => {
-                params.set("name", trueValue);
-                return params;
-            })
-            navigate(`/catalog/search`);
-            // dispatch(searchFurn(trueValue));
+            navigate(`/catalog/search?name=${trueValue}`);
             e.target.searchFurn.value = '';
         }
     };
@@ -56,8 +44,7 @@ export const Sidebar = () => {
                     name="searchFurn"
                     aria-label="Search"
                 />
-                <button 
-                className="button-find-furn btn btn-outline-success my-sm-0 d-flex justify-content-center align-items-center">
+                <button className="button-find-furn btn btn-outline-success my-sm-0 d-flex justify-content-center align-items-center">
                     Поиск
                 </button>
             </form>

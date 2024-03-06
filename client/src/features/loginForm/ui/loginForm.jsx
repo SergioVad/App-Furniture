@@ -41,12 +41,8 @@ export const LoginForm = () => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-        const redirect = navigate.location.state
-            ? navigate.location.state.from.pathname
-            : '/';
-
-        dispatch(login({ payload: data, redirect }));
-        <Navigate to={redirect} replace />;
+        dispatch(login(data));
+        <Navigate to={'/'} replace />;
     };
     return (
         <>
