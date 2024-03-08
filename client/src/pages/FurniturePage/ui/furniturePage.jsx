@@ -10,7 +10,7 @@ export const FurniturePage = () => {
     return (
         <>
             {currentElement && currentCategory ? (
-                <CurrentElem />
+                <CurrentElem value={currentCategory} />
             ) : currentCategory ? (
                 <Suspense fallback={<PageLoader />}>
                     <CurrentCategoryAsync value={currentCategory} />

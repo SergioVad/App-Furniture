@@ -14,10 +14,6 @@ export const furnitureService = {
         const data = await httpFurniture.post(`product-change`, payload);
         return data;
     },
-    postFurn: async (payload) => {
-        const data = await httpFurniture.post(`sendFormData`, payload);
-        return data;
-    },
     delete: async (unitId) => {
         const data = await httpFurniture.delete(unitId);
         return data;

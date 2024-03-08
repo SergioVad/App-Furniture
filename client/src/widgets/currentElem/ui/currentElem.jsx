@@ -1,33 +1,51 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import {
-    deleteFurniture,
-    getFurnitureByName,
-} from '../../../app/store/furniture';
+import { deleteFurniture } from '../../../app/store/furniture';
 import { getCurrentUserData } from '../../../app/store/users';
 import { constApi } from '@/shared/const/constApi';
 import { addRuble } from '@/shared/utils/addRuble';
 import { Breadcrumb } from '../../../shared/ui/breadCrumb/breadCrumb';
-import CategoryUnderItem from '@/todo/listFurn/categoryUnderItem';
+// import CategoryUnderItem from '@/todo/listFurn/categoryUnderItem';
+import { useCurrentCategoryQuery } from '@/features/currentCategory/api/currentCategoryApi';
+import { PageLoader } from '@/pages/PageLoader';
 
-export const CurrentElem = () => {
+export const CurrentElem = ({ value }) => {
     const { currentElement, currentCategory } = useParams();
     const dispatch = useDispatch();
     const user = useSelector(getCurrentUserData());
-
-    const furnitureByName = useSelector(getFurnitureByName(currentElement));
+    const { data, isError, isLoading } = useCurrentCategoryQuery({ value });
+    const furnitureByName = data
+        ? Object.values(data)
+              .filter((item) => item.product_name === currentElement)
+              .shift()
+        : undefined;
+    console.log('data', data);
     const handleDelete = (userId) => {
         dispatch(deleteFurniture(userId));
         <Navigate to={`/catalog/${currentCategory}`} replace />;
     };
 
-    if (currentElement) {
+    if (isError) {
+        return <div>error...</div>;
+    }
+    if (isLoading) {
         return (
+            <div className="offset-2 h3 d-flex justify-content-center my-5">
+                <PageLoader />
+            </div>
+        );
+    }
+    return (
+        furnitureByName && (
             <div className="d-flex flex-column offset-2 col-10 p-3">
                 <Breadcrumb
                     currentCategory={currentCategory}
                     currentElement={currentElement}
                 />
+                {console.log(
+                    'furnitureByName.product_name_rus',
+                    furnitureByName.product_name_rus,
+                )}
                 <div className="d-flex align-items-center">
                     <h2 className="header-item-slider">
                         {furnitureByName.product_name_rus}
@@ -159,8 +177,8 @@ export const CurrentElem = () => {
                     </div>
                 </div>
                 <hr />
-                <CategoryUnderItem slide={0} />
+                {/* <CategoryUnderItem slide={0} /> */}
             </div>
-        );
-    } else return 'loading...';
+        )
+    );
 };
