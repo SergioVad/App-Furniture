@@ -1,28 +1,22 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate, useParams } from 'react-router-dom';
-import { deleteFurniture } from '../../../app/store/furniture';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getCurrentUserData } from '../../../app/store/users';
 import { constApi } from '@/shared/const/constApi';
 import { addRuble } from '@/shared/utils/addRuble';
-import { Breadcrumb } from '../../../shared/ui/breadCrumb/breadCrumb';
 // import CategoryUnderItem from '@/todo/listFurn/categoryUnderItem';
-import { useCurrentCategoryQuery } from '@/features/currentCategory/api/currentCategoryApi';
 import { PageLoader } from '@/pages/PageLoader';
+import {
+    useDeleteCurrentElemMutation,
+    useGetCurrentElemQuery,
+} from '../api/currentElemApi';
+import { Breadcrumb } from '@/shared/ui/breadCrumb/breadCrumb';
 
-export const CurrentElem = ({ value }) => {
-    const { currentElement, currentCategory } = useParams();
-    const dispatch = useDispatch();
+export const CurrentElem = ({ currentElement, currentCategory }) => {
     const user = useSelector(getCurrentUserData());
-    const { data, isError, isLoading } = useCurrentCategoryQuery({ value });
-    const furnitureByName = data
-        ? Object.values(data)
-              .filter((item) => item.product_name === currentElement)
-              .shift()
-        : undefined;
-    console.log('data', data);
-    const handleDelete = (userId) => {
-        dispatch(deleteFurniture(userId));
-        <Navigate to={`/catalog/${currentCategory}`} replace />;
+    const { data, isError, isLoading } = useGetCurrentElemQuery(currentElement);
+    const [removeFurn] = useDeleteCurrentElemMutation();
+    const handleDelete = (userId) => () => {
+        removeFurn(userId);
     };
 
     if (isError) {
@@ -36,33 +30,29 @@ export const CurrentElem = ({ value }) => {
         );
     }
     return (
-        furnitureByName && (
+        data && (
             <div className="d-flex flex-column offset-2 col-10 p-3">
                 <Breadcrumb
                     currentCategory={currentCategory}
                     currentElement={currentElement}
                 />
-                {console.log(
-                    'furnitureByName.product_name_rus',
-                    furnitureByName.product_name_rus,
-                )}
                 <div className="d-flex align-items-center">
                     <h2 className="header-item-slider">
-                        {furnitureByName.product_name_rus}
+                        {data.product_name_rus}
                     </h2>
                     {user && user.type === 'admin' && (
                         <div>
                             <button
-                                onClick={() =>
-                                    handleDelete(furnitureByName._id)
-                                }
+                                onClick={handleDelete(data._id)}
                                 className="btn btn-danger"
                                 style={{ height: '50px' }}
                             >
-                                Удалить
+                                <a href={`/catalog/${currentCategory}`}>
+                                    Удалить
+                                </a>
                             </button>
                             <Link
-                                to={`/catalog/${currentCategory}/${furnitureByName.product_name}/editElem`}
+                                to={`/catalog/${currentCategory}/${data.product_name}/editElem`}
                             >
                                 <button
                                     className="btn btn-warning mx-3"
@@ -82,25 +72,20 @@ export const CurrentElem = ({ value }) => {
                             className="carousel slide d-flex justify-content-center"
                         >
                             <div className="carousel-inner mb-3">
-                                {furnitureByName.product_image.map(
-                                    (item, index) => (
-                                        <div
-                                            key={index}
-                                            className={`carousel-item${index === 0 ? ' active' : ''}`}
-                                        >
-                                            <div className="divImgCarousel d-flex justify-content-center align-items-center">
-                                                <img
-                                                    className="imgCarousel"
-                                                    src={
-                                                        constApi.imgSource +
-                                                        item
-                                                    }
-                                                    alt={`Фото ${index}`}
-                                                />
-                                            </div>
+                                {data.product_image.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className={`carousel-item${index === 0 ? ' active' : ''}`}
+                                    >
+                                        <div className="divImgCarousel d-flex justify-content-center align-items-center">
+                                            <img
+                                                className="imgCarousel"
+                                                src={constApi.imgSource + item}
+                                                alt={`Фото ${index}`}
+                                            />
                                         </div>
-                                    ),
-                                )}
+                                    </div>
+                                ))}
                             </div>
                             <img
                                 src={constApi.imgSource + 'arrow/prev.svg'}
@@ -118,7 +103,7 @@ export const CurrentElem = ({ value }) => {
                     </div>
 
                     <div className="right-block-slider d-flex flex-wrap col-xxl-5 ps-2">
-                        {furnitureByName.product_image.map((item, index) => (
+                        {data.product_image.map((item, index) => (
                             <div
                                 key={index}
                                 className="right-block-slider-item d-flex flex-column align-items-center"
@@ -136,34 +121,25 @@ export const CurrentElem = ({ value }) => {
                                     <div className="right-block-slider-item-descr d-flex flex-column align-items-center">
                                         <div>
                                             <strong>
-                                                {
-                                                    furnitureByName
-                                                        .arrDescrImage[index][0]
-                                                }
+                                                {data.arrDescrImage[index][0]}
                                             </strong>
                                         </div>
-                                        {furnitureByName.arrDescrImage[
-                                            index
-                                        ][1] && (
+                                        {data.arrDescrImage[index][1] && (
                                             <div>
                                                 <strong>
                                                     {addRuble(
-                                                        furnitureByName
-                                                            .arrDescrImage[
+                                                        data.arrDescrImage[
                                                             index
                                                         ][1],
                                                     )}
                                                 </strong>
                                             </div>
                                         )}
-                                        {furnitureByName.arrDescrImage[
-                                            index
-                                        ][2] && (
+                                        {data.arrDescrImage[index][2] && (
                                             <div>
                                                 <strong>
                                                     {
-                                                        furnitureByName
-                                                            .arrDescrImage[
+                                                        data.arrDescrImage[
                                                             index
                                                         ][2]
                                                     }

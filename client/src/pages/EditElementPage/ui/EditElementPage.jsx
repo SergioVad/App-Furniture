@@ -8,13 +8,14 @@ import {
     loadFurnitureListAdmin,
 } from '../../../app/store/furniture';
 import { getCurrentUserData } from '../../../app/store/users';
+import { useGetCurrentElemQuery } from '@/widgets/currentElem/api/currentElemApi';
 
 export const EditElementPage = () => {
     const navigate = useNavigate();
     const user = useSelector(getCurrentUserData());
     const dispatch = useDispatch();
     const { currentElement } = useParams();
-    const furnitureByName = useSelector(getFurnitureByName(currentElement));
+    const { data: furnitureByName } = useGetCurrentElemQuery(currentElement);
     const [product_name_rus, setNameRus] = useState(
         furnitureByName.product_name_rus,
     );

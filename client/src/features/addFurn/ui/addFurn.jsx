@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import { nanoid } from 'nanoid';
 import { addFurniture, loadFurnitureListAdmin } from '@/app/store/furniture';
 
 // import { getCurrentUserData } from "../store/users";
 export const AddFurn = () => {
-    const navigate = useNavigate();
     // const user = useSelector(getCurrentUserData());
     const dispatch = useDispatch();
     const [category_product, setCategory] = useState('');
@@ -55,7 +53,6 @@ export const AddFurn = () => {
         formData.append(`product_image_10_descr`, product_image_10_descr);
         dispatch(addFurniture(formData));
         dispatch(loadFurnitureListAdmin());
-        navigate(`/catalog/${category_product}`);
     };
     const handleFile = ({ target }) => {
         const arrImg = [];
@@ -373,7 +370,7 @@ export const AddFurn = () => {
                 </Form.Group>
             </Form>
             <Button variant="outline-success" onClick={addDevice}>
-                Добавить
+                <a href={`/catalog/${category_product}`}>Добавить</a>
             </Button>
         </div>
     );

@@ -52,7 +52,6 @@ const {
     furnitureReceved,
     furnitureRequestFiled,
     furnitureAdd,
-    furnitureDelete,
     furnitureEdit,
 } = actions;
 
@@ -75,18 +74,6 @@ export const addFurniture = (payload) => async (dispatch) => {
     }
 };
 
-export const deleteFurniture = (uniId) => async (dispatch) => {
-    dispatch(furnitureRequested());
-    try {
-        const { data } = await furnitureService.delete(uniId);
-        if (!data) {
-            await dispatch(furnitureDelete(data));
-            dispatch(loadFurnitureListAdmin());
-        }
-    } catch (error) {
-        dispatch(furnitureRequestFiled(error.message));
-    }
-};
 export const editFurniture = (elem, id) => async (dispatch) => {
     dispatch(furnitureRequested());
     try {
@@ -99,20 +86,4 @@ export const editFurniture = (elem, id) => async (dispatch) => {
 };
 export const getFurniture = () => (state) => {
     return state.furniture.entities;
-};
-
-export const getFurnitureLoadingStatus = () => (state) =>
-    state.furniture.isLoading;
-export const getFurnitureByName = (product_name) => (state) => {
-    if (state.furniture.entities) {
-        return state.furniture.entities.find(
-            (p) => p.product_name === product_name,
-        );
-    }
-};
-
-export const getFurnitureById = (id) => (state) => {
-    if (state.furniture.entities) {
-        return state.furniture.entities.find((u) => u._id === id);
-    }
 };

@@ -8,6 +8,7 @@ import { AllFurnPage } from '@/pages/AllFurnPage';
 import { Route, Routes } from 'react-router-dom';
 import { AddFurn } from '@/features/addFurn';
 import { EditElementPage } from '@/pages/EditElementPage';
+import { NotFoundPage } from '@/pages/NotFoundPage';
 
 export const AppRoutes = () => {
     return (
@@ -47,6 +48,7 @@ export const AppRoutes = () => {
                     element={<DostavkaSborka />}
                 />
                 <Route path={'/kak-oplatit'} exact element={<Payment />} />
+                <Route path={'*'} exact element={<NotFoundPage />} />
             </Routes>
         </div>
     );
