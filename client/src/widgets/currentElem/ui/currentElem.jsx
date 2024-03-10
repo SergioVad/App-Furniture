@@ -42,15 +42,15 @@ export const CurrentElem = ({ currentElement, currentCategory }) => {
                     </h2>
                     {user && user.type === 'admin' && (
                         <div>
-                            <button
-                                onClick={handleDelete(data._id)}
-                                className="btn btn-danger"
-                                style={{ height: '50px' }}
-                            >
-                                <a href={`/catalog/${currentCategory}`}>
+                            <a href={`/catalog/${currentCategory}`}>
+                                <button
+                                    onClick={handleDelete(data._id)}
+                                    className="btn btn-danger"
+                                    style={{ height: '50px' }}
+                                >
                                     Удалить
-                                </a>
-                            </button>
+                                </button>
+                            </a>
                             <Link
                                 to={`/catalog/${currentCategory}/${data.product_name}/editElem`}
                             >

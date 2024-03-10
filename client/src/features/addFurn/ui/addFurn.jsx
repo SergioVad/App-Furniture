@@ -369,9 +369,11 @@ export const AddFurn = () => {
                     />
                 </Form.Group>
             </Form>
-            <Button variant="outline-success" onClick={addDevice}>
-                <a href={`/catalog/${category_product}`}>Добавить</a>
-            </Button>
+            <a href={`/catalog/${category_product}`}>
+                <Button variant="outline-success" onClick={addDevice}>
+                    Добавить
+                </Button>
+            </a>
         </div>
     );
 };
